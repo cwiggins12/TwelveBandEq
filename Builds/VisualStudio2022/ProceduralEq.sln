@@ -1,3 +1,46 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e5116df7eedd9528b5c7a7a3e6c07c640495b79aa43550d0a8f6740585436369
-size 2675
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - Standalone Plugin", "ProceduralEq_StandalonePlugin.vcxproj", "{934922E9-2AA4-05D7-4DB6-FB26E821C944}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091} = {EA3D0D39-2600-079D-9FCE-48CD97AD8091}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - VST3", "ProceduralEq_VST3.vcxproj", "{4F34C3EE-1DF7-9108-FC46-436B60304C30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091} = {EA3D0D39-2600-079D-9FCE-48CD97AD8091}
+		{5E1B0E1E-4B3C-C864-8678-86DDF9870380} = {5E1B0E1E-4B3C-C864-8678-86DDF9870380}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - Shared Code", "ProceduralEq_SharedCode.vcxproj", "{EA3D0D39-2600-079D-9FCE-48CD97AD8091}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - VST3 Manifest Helper", "ProceduralEq_VST3ManifestHelper.vcxproj", "{5E1B0E1E-4B3C-C864-8678-86DDF9870380}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F34C3EE-1DF7-9108-FC46-436B60304C30}.Debug|x64.ActiveCfg = Debug|x64
+		{4F34C3EE-1DF7-9108-FC46-436B60304C30}.Debug|x64.Build.0 = Debug|x64
+		{4F34C3EE-1DF7-9108-FC46-436B60304C30}.Release|x64.ActiveCfg = Release|x64
+		{4F34C3EE-1DF7-9108-FC46-436B60304C30}.Release|x64.Build.0 = Release|x64
+		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Debug|x64.ActiveCfg = Debug|x64
+		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Debug|x64.Build.0 = Debug|x64
+		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Release|x64.ActiveCfg = Release|x64
+		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Release|x64.Build.0 = Release|x64
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Debug|x64.ActiveCfg = Debug|x64
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Debug|x64.Build.0 = Debug|x64
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Release|x64.ActiveCfg = Release|x64
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Release|x64.Build.0 = Release|x64
+		{5E1B0E1E-4B3C-C864-8678-86DDF9870380}.Debug|x64.ActiveCfg = Debug|x64
+		{5E1B0E1E-4B3C-C864-8678-86DDF9870380}.Debug|x64.Build.0 = Debug|x64
+		{5E1B0E1E-4B3C-C864-8678-86DDF9870380}.Release|x64.ActiveCfg = Release|x64
+		{5E1B0E1E-4B3C-C864-8678-86DDF9870380}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

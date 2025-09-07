@@ -67,7 +67,8 @@ void SpectrumAnalyser::drawNextFrameOfSpectrum() {
     }
 }
 
-void SpectrumAnalyser::drawFrame(juce::Graphics& g) {
+//almost positive making the rounded is way slower than doing the math for cubic per each 3 points
+void SpectrumAnalyser::paint(juce::Graphics& g) {
     g.setColour(juce::Colours::lime);
     auto w = (float)getWidth();
     auto h = (float)getHeight();
@@ -79,12 +80,9 @@ void SpectrumAnalyser::drawFrame(juce::Graphics& g) {
     for (int i = 1; i < scopeSize; ++i)
         p.lineTo(juce::jmap((float)i, 0.0f, (float)scopeSize - 1.0f, 0.0f, w),
             mapY(scopeData[i]));
-
-    g.strokePath(p, juce::PathStrokeType(2.0f));
-}
-
-void SpectrumAnalyser::paint(juce::Graphics& g) {
-    drawFrame(g);
+    juce::Path rounded = p.createPathWithRoundedCorners(16.0f);
+    //g.strokePath(p, juce::PathStrokeType(2.0f));
+    g.strokePath(rounded, juce::PathStrokeType(2.0f));
 }
 
 //==============================================================================
@@ -167,18 +165,17 @@ void SelectedEqComponent::resized() {
 */
 ResponseCurveComponent::ResponseCurveComponent(ProceduralEqAudioProcessor& p, ProceduralEqAudioProcessorEditor& e) : audioProcessor(p), editor(e) {
     setInterceptsMouseClicks(false, false);
-    //startTimerHz(30);
+    //set up listeners for all the params pls
+    for (int i = 0; i < params.size(); ++i)
+        audioProcessor.tree.addParameterListener(params[i], this);
 }
 
-ResponseCurveComponent::~ResponseCurveComponent() {}
+ResponseCurveComponent::~ResponseCurveComponent() {
+    for (int i = 0; i < params.size(); ++i)
+        audioProcessor.tree.removeParameterListener(params[i], this);
+}
 
-////gonna need to put the timer on the editor to account for the rta 
-//void ResponseCurveComponent::timerCallback() {
-//    repaint();
-//}
-
-//this draws the response curve. I hate this. eventually this needs to be changed to check the bandwidth of each eq and only have to check the pixels within that bandwidth. oughta be way more efficient
-//need to add a function to paint all init'd buttons, set their centre at the mapped x and y according to gain and freqency
+//this draws the response curve. I hate this. eventually this needs to be changed to check the bandwidth of the changed eq and only have to check the pixels within that bandwidth
 void ResponseCurveComponent::paint(juce::Graphics& g) {
     using namespace juce;
 
@@ -227,6 +224,10 @@ void ResponseCurveComponent::paint(juce::Graphics& g) {
 
     g.setColour(Colours::white);
     g.strokePath(responseCurve, PathStrokeType(2.0f));
+}
+
+void ResponseCurveComponent::parameterChanged(const juce::String& paramID, float newValue) {
+    repaint();
 }
 
 //==============================================================================
@@ -386,7 +387,7 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
         addChildComponent(buttonArr[i]);
     }
     addChildComponent(selectedEqComponent);
-    startTimerHz(30); // may want to allow user to define this at some point
+    startTimerHz(TIMER_FPS);
 }
 
 ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {}
@@ -394,7 +395,7 @@ ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {}
 //==============================================================================
 void ProceduralEqAudioProcessorEditor::timerCallback() {
     analyser.onEditorTimer();
-    rcc.repaint();
+    //rcc.repaint();
 }
 
 void ProceduralEqAudioProcessorEditor::paint(juce::Graphics& g) {
@@ -402,7 +403,7 @@ void ProceduralEqAudioProcessorEditor::paint(juce::Graphics& g) {
 }
 
 void ProceduralEqAudioProcessorEditor::resized() {
-    buttonBounds = backgroundImage();
+    background = background.rescaled(getLocalBounds().getWidth(), getLocalBounds().getHeight(), juce::Graphics::mediumResamplingQuality);
     auto area = getRenderArea();
     analyser.setBounds(area);
     rcc.setBounds(area);

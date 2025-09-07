@@ -23,6 +23,7 @@ enum {
 };
 
 const int TOOLTIP_DELAY = 200; //this is in milliseconds
+const int TIMER_FPS = 30;
 
 //==============================================================================
 struct SpectrumAnalyser : juce::Component {
@@ -32,7 +33,6 @@ struct SpectrumAnalyser : juce::Component {
     void onEditorTimer();
     void paint(juce::Graphics& g) override;
     void drawNextFrameOfSpectrum();
-    void drawFrame(juce::Graphics& g);
 
 private:
     ProceduralEqAudioProcessor& audioProcessor;
@@ -71,13 +71,15 @@ private:
 //==============================================================================
 /**
 */
-struct ResponseCurveComponent : juce::Component{
+struct ResponseCurveComponent : juce::Component, private juce::AudioProcessorValueTreeState::Listener {
     ResponseCurveComponent(ProceduralEqAudioProcessor&, ProceduralEqAudioProcessorEditor&);
     ~ResponseCurveComponent();
 
     void paint(juce::Graphics& g) override;
 
 private:
+    void parameterChanged(const juce::String& paramID, float newValue) override;
+
     ProceduralEqAudioProcessor& audioProcessor;
     ProceduralEqAudioProcessorEditor& editor;
 };

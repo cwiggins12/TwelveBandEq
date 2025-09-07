@@ -1,3 +1,279 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0375bfcfbc7790b70039a6583eeb310436b3d57cc1276cdf3c8ae4c80487b69a
-size 31096
+﻿  PluginEditor.cpp
+  PluginProcessor.cpp
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(87,56): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(89,67): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(93,83): warning C4100: 'newName': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(93,56): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(132,99): warning C4100: 'midiMessages': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(173,73): warning C4100: 'destData': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(178,76): warning C4100: 'sizeInBytes': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(178,66): warning C4100: 'data': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:             Type=double
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:             Type=double
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(229,82): warning C4100: 'newValue': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(229,67): warning C4100: 'paramID': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(251,95): warning C4100: 'shouldDrawButtonAsDown': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(251,59): warning C4100: 'shouldDrawButtonAsHighlighted': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(334,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:             _Ty=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244: 'initializing': conversion from 'Type' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:             Type=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(383,9): warning C4458: declaration of 'selectedEq' hides class member
+      C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.h(152,9):
+      see declaration of 'ProceduralEqAudioProcessorEditor::selectedEq'
+  
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(383,9): warning C4189: 'selectedEq': local variable is initialized but not referenced
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244: 'argument': conversion from 'ElementType' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244: 'argument': conversion from 'Type' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:             Type=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(512,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(521,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(649,36): warning C4459: declaration of 'colours' hides global declaration
+  (compiling source file '../../Source/PluginEditor.cpp')
+      C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(12,27):
+      see declaration of 'colours'
+      C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(648,1):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(2407,44):
+          see reference to class template instantiation 'juce::RenderingHelpers::SavedStateBase<juce::RenderingHelpers::SoftwareRendererSavedState>' being compiled
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(2002,5):
+          while compiling class template member function 'juce::RenderingHelpers::SavedStateBase<juce::RenderingHelpers::SoftwareRendererSavedState>::SavedStateBase(const juce::RectangleList<int> &,juce::Point<int>)'
+              C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(2418,21):
+              see the first reference to 'juce::RenderingHelpers::SavedStateBase<juce::RenderingHelpers::SoftwareRendererSavedState>::SavedStateBase' in 'juce::RenderingHelpers::SoftwareRendererSavedState::SoftwareRendererSavedState'
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(2003,21):
+          see reference to class template instantiation 'juce::RenderingHelpers::ClipRegions::RectangleListRegion<SavedStateType>' being compiled
+          with
+          [
+              SavedStateType=juce::RenderingHelpers::SoftwareRendererSavedState
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(1814,14):
+          while compiling class template member function 'void juce::RenderingHelpers::ClipRegions::RectangleListRegion<SavedStateType>::fillAllWithGradient(SavedStateType &,juce::ColourGradient &,const juce::AffineTransform &,bool) const'
+          with
+          [
+              SavedStateType=juce::RenderingHelpers::SoftwareRendererSavedState
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(1816,18):
+          see reference to function template instantiation 'void juce::RenderingHelpers::SoftwareRendererSavedState::fillWithGradient<const juce::RenderingHelpers::ClipRegions::RectangleListRegion<SavedStateType>>(IteratorType &,juce::ColourGradient &,const juce::AffineTransform &,bool) const' being compiled
+          with
+          [
+              SavedStateType=juce::RenderingHelpers::SoftwareRendererSavedState,
+              IteratorType=const juce::RenderingHelpers::ClipRegions::RectangleListRegion<juce::RenderingHelpers::SoftwareRendererSavedState>
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(2517,51):
+          see reference to function template instantiation 'void juce::RenderingHelpers::EdgeTableFillers::renderGradient<IteratorType,juce::PixelAlpha>(Iterator &,const juce::Image::BitmapData &,const juce::ColourGradient &,const juce::AffineTransform &,const juce::PixelARGB *,int,bool,DestPixelType *)' being compiled
+          with
+          [
+              IteratorType=const juce::RenderingHelpers::ClipRegions::RectangleListRegion<juce::RenderingHelpers::SoftwareRendererSavedState>,
+              Iterator=const juce::RenderingHelpers::ClipRegions::RectangleListRegion<juce::RenderingHelpers::SoftwareRendererSavedState>,
+              DestPixelType=juce::PixelAlpha
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(1529,87):
+          see reference to class template instantiation 'juce::RenderingHelpers::EdgeTableFillers::Gradient<DestPixelType,juce::RenderingHelpers::GradientPixelIterators::Linear>' being compiled
+          with
+          [
+              DestPixelType=juce::PixelAlpha
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(648,9):
+          while compiling class template member function 'juce::RenderingHelpers::EdgeTableFillers::Gradient<DestPixelType,juce::RenderingHelpers::GradientPixelIterators::Linear>::Gradient(const juce::Image::BitmapData &,const juce::ColourGradient &,const juce::AffineTransform &,const juce::PixelARGB *,int)'
+          with
+          [
+              DestPixelType=juce::PixelAlpha
+          ]
+              C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(1529,96):
+              see the first reference to 'juce::RenderingHelpers::EdgeTableFillers::Gradient<DestPixelType,juce::RenderingHelpers::GradientPixelIterators::Linear>::Gradient' in 'juce::RenderingHelpers::EdgeTableFillers::renderGradient'
+          with
+          [
+              DestPixelType=juce::PixelAlpha
+          ]
+  
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244: 'argument': conversion from '_Ty' to 'const ElementType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:             _Ty=double
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         ]
+  (compiling source file '../../Source/PluginEditor.cpp')
+      C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(477,23):
+          see reference to function template instantiation 'juce::Array<float,juce::DummyCriticalSection,0>::Array<double,double,double,double,double,double,double,double,double,double,double,double,double,double,int>(ElementType &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,int &&)' being compiled
+          with
+          [
+              ElementType=float
+          ]
+              C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(477,23):
+              see the first reference to 'juce::Array<float,juce::DummyCriticalSection,0>::Array' in 'ProceduralEqAudioProcessorEditor::backgroundImage'
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_Array.h(134,15):
+          see reference to function template instantiation 'void juce::ArrayBase<ElementType,TypeOfCriticalSectionToUse>::add<_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,int>(ElementType &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,int &&)' being compiled
+          with
+          [
+              ElementType=float,
+              TypeOfCriticalSectionToUse=juce::DummyCriticalSection,
+              _Ty=double
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(290,9):
+          see reference to function template instantiation 'void juce::ArrayBase<ElementType,TypeOfCriticalSectionToUse>::addImpl<float,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,int>(float &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,int &&)' being compiled
+          with
+          [
+              ElementType=float,
+              TypeOfCriticalSectionToUse=juce::DummyCriticalSection,
+              _Ty=double
+          ]
+  
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244: 'argument': conversion from '_Ty' to 'const ElementType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:             _Ty=int
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35): warning C4244:         ]
+  (compiling source file '../../Source/PluginEditor.cpp')
+  
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244: 'initializing': conversion from '_Ty' to 'ElementType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:             _Ty=double
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         ]
+  (compiling source file '../../Source/PluginEditor.cpp')
+      C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(290,9):
+          see reference to function template instantiation 'void juce::ArrayBase<ElementType,TypeOfCriticalSectionToUse>::addImpl<float,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,int>(float &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,int &&)' being compiled
+          with
+          [
+              ElementType=float,
+              TypeOfCriticalSectionToUse=juce::DummyCriticalSection,
+              _Ty=double
+          ]
+          C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(562,9):
+          see reference to function template instantiation 'void juce::ArrayBase<ElementType,TypeOfCriticalSectionToUse>::addAssumingCapacityIsReady<_Ty,double,double,double,double,double,double,double,double,double,double,double,double,double,double,int>(_Ty &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,int &&)' being compiled
+          with
+          [
+              ElementType=float,
+              TypeOfCriticalSectionToUse=juce::DummyCriticalSection,
+              _Ty=float
+          ]
+  
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244: 'initializing': conversion from '_Ty' to 'ElementType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:             _Ty=int
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         ]
+  (compiling source file '../../Source/PluginEditor.cpp')
+  
+  ProceduralEq_SharedCode.vcxproj -> C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Shared Code\ProceduralEq.lib

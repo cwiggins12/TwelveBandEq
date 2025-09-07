@@ -1,3 +1,84 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:487800d480138249dedc4c2d1f9d581767b9bf481d7a0c5905955dbb3f66d530
-size 4283
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Builds\\VisualStudio2022\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PluginEditor.h",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h",
+              "RelativeDocumentMoniker": "..\\..\\Source\\PluginEditor.h",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h",
+              "RelativeToolTip": "..\\..\\Source\\PluginEditor.h",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-30T20:56:13.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PluginEditor.cpp",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Source\\PluginEditor.cpp",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp",
+              "RelativeToolTip": "..\\..\\Source\\PluginEditor.cpp",
+              "ViewState": "AgIAAJABAAAAAAAAAAAmwKUBAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-21T05:58:07.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PluginProcessor.h",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h",
+              "RelativeDocumentMoniker": "..\\..\\Source\\PluginProcessor.h",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h",
+              "RelativeToolTip": "..\\..\\Source\\PluginProcessor.h",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAmwH8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-21T05:58:03.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PluginProcessor.cpp",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Source\\PluginProcessor.cpp",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.cpp",
+              "RelativeToolTip": "..\\..\\Source\\PluginProcessor.cpp",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAmwA8BAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-21T05:58:05.532Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
