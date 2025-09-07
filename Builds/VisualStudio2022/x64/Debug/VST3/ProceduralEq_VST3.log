@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:31547f9108aca36afd28eb722d79f250cfcd83a9ed775682d650bfe46d9094ac
-size 641
+﻿     Creating library C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\VST3\ProceduralEq.lib and object C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\VST3\ProceduralEq.exp
+  ProceduralEq_VST3.vcxproj -> C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\VST3\ProceduralEq.dll
+          1 file(s) copied.
+  Deleted file - C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\VST3\ProceduralEq.vst3\Contents\Resources\moduleinfo.json
+  : Info: Successfully generated a manifest for ProceduralEq

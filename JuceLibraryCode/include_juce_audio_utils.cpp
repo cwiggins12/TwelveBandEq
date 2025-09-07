@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dd5150d3aa65c0c104beefc51035617c6da319a5fb8ff3c286228d4e59e7429d
-size 199
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_utils/juce_audio_utils.cpp>

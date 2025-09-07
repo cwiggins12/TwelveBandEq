@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5c3ad87f364e12de75c5063ef1ddd31e42c599c460c55f995ba8b100581b0c0a
-size 218
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_plugin_client/juce_audio_plugin_client_LV2.mm>

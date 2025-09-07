@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eb9a53cb974c552c7d6ba7f95dd02d6c63825d7e908b90fcaf90063dee5b3587
-size 201
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_core/juce_core_CompilationTime.cpp>

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:afb3596aad595b830100506a1ef1a44c0f83f3c415c62cf541e381a9dd2d57d3
-size 213
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_processors/juce_audio_processors_ara.cpp>

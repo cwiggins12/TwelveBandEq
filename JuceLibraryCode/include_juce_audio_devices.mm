@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:61810a5a994b251d83ed1cbabb5689da39aa6cba6491efe781aff7bf23148afc
-size 202
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_devices/juce_audio_devices.mm>

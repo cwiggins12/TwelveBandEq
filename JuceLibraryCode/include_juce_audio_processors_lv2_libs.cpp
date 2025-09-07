@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ddd02930190eba8ae3503f891793c05d039151e490574d47f535836839b04164
-size 218
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_processors/juce_audio_processors_lv2_libs.cpp>

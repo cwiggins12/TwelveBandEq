@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:452c091eb4cda8acec934a1272122272a0e62142b3f8df909f0599ed2ae011d3
-size 201
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_graphics/juce_graphics_Sheenbidi.c>

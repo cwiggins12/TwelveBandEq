@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:130f5af38a1fbab6826e54f55c671d22c5a5e75c28078d08846b882bc0b145b1
-size 438
+TODO:
+smooth spectrum analyser
+fix hover tooltips
+optimize response curve(look into getMagnitudeForFrequencyArray() and an algo to get the bandwidth of a given filter)
+finish up save/load
+fix up background image
+bug when eq is at -72.0 the makes rcc and analyser disappear
+make spectrum analyser listen rather than calling per frame
+make the selected eq component look decent
+
+THINGS TO ADD LATER:
+use SmoothedValue<float>?
+make resizable

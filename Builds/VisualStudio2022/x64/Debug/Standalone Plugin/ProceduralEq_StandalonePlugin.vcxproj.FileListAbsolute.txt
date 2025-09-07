@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d298df7c4aaefbef69b6bbf7edae1b9827f6f13e55c860f277c1f57cd15d93c9
-size 121
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Standalone Plugin\ProceduralEq.exe

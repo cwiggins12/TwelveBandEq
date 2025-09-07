@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ceb12d8f134ecd27be7887888df9a841373e8f6f21b716dafb1dbc749821e53b
-size 185
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_core/juce_core.cpp>

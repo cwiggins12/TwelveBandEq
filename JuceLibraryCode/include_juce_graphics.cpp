@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:934cd76b2880b451864ed1bf77e09a63f1b86fc3a3ffc4519ee819920d1fa49d
-size 193
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_graphics/juce_graphics.cpp>

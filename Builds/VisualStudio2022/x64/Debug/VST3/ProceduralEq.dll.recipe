@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:492c5ff1c345d37d5334912d9806046388baee7c1f0b814f3ae6464e6a283fbf
-size 340
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\VST3\ProceduralEq.dll</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9bd793974ee111184b2952f2a5de67bbd2f3ae3f11964fae1f99481b7865a77e
-size 225
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp>

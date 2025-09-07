@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:afcbf82e5f66a5c411ba9d7f20d4106b6c6a8ce6d2bc41cd21c8f1440c87be00
-size 221
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp>

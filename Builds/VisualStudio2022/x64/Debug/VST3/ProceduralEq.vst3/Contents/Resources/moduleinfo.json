@@ -1,3 +1,58 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a0b41d433ad94dbe4777d0e0d9c10d9dfdada9b64c2a823cac828e49fd9ddbe4
-size 1344
+{
+  "Name": "ProceduralEq",
+  "Version": "1.0.0",
+  "Factory Info": {
+    "Vendor": "yourcompany",
+    "URL": "www.yourcompany.com",
+    "E-Mail": "",
+    "Flags": {
+      "Unicode": true,
+      "Classes Discardable": false,
+      "Component Non Discardable": false,
+    },
+  },
+  "Classes": [
+    {
+      "CID": "ABCDEF019182FAEB4D616E7558787333",
+      "Category": "Audio Module Class",
+      "Name": "ProceduralEq",
+      "Vendor": "yourcompany",
+      "Version": "1.0.0",
+      "SDKVersion": "VST 3.7.12",
+      "Sub Categories": [
+        "Fx",
+      ],
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF011234ABCD4D616E7558787333",
+      "Category": "Component Controller Class",
+      "Name": "ProceduralEq",
+      "Vendor": "yourcompany",
+      "Version": "1.0.0",
+      "SDKVersion": "VST 3.7.12",
+      "Sub Categories": [
+        "Fx",
+      ],
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF01C0DEF00D4D616E7558787333",
+      "Category": "Plugin Compatibility Class",
+      "Name": "ProceduralEq",
+      "Vendor": "yourcompany",
+      "Version": "1.0.0",
+      "SDKVersion": "VST 3.7.12",
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+  ],
+}

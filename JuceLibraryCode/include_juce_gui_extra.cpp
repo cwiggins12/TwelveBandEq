@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8808fc5c3b774de0e6e09210ed985d73f6cfeb79842509673628e9d5d5cb3f89
-size 195
+/*
+
+    IMPORTANT! This file is auto-generated each time you save your
+    project - if you alter its contents, your changes may be overwritten!
+
+*/
+
+#include <juce_gui_extra/juce_gui_extra.cpp>
