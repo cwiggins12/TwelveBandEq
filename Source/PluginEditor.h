@@ -95,24 +95,6 @@ struct DraggableButton : juce::Button, private juce::AudioProcessorValueTreeStat
     void mouseDown(const juce::MouseEvent& event) override;
     void mouseDrag(const juce::MouseEvent& event) override;
     bool hitTest(int x, int y) override;
-    float getCurrGain() {
-        auto* val = audioProcessor.tree.getRawParameterValue(params[1 + associatedEq * 6]);
-        if (val != nullptr) {
-            return *val;
-        }
-        else {
-            return 0;
-        }
-    }
-    float getCurrFreq() {
-        auto* val = audioProcessor.tree.getRawParameterValue(params[0 + associatedEq * 6]);
-        if (val != nullptr) {
-            return *val;
-        }
-        else {
-            return 0;
-        }
-    }
     void resetEq();
     void updateParamsFromPosition();
     void updatePositionFromParams();
@@ -161,8 +143,11 @@ private:
     juce::OwnedArray<DraggableButton> buttonArr;
     SelectedEqComponent selectedEqComponent;
     juce::Image background;
-
     juce::TooltipWindow tooltipWindow{ this, TOOLTIP_DELAY };
+    juce::ToggleButton analyserOnButton{ "Analyser" };
+    juce::ComboBox analyserModeBox;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserOnAttachment;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> analyserModeAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProceduralEqAudioProcessorEditor)
 };

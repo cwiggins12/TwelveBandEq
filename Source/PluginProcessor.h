@@ -57,6 +57,9 @@ private:
     std::vector<T> buffer;
 };
 
+//==============================================================================
+/**
+*/
 //template to have true logarithmic skew for frequency sliders, dont forget to cast to float :)
 template <typename ValueT>
 juce::NormalisableRange<ValueT> logRange(ValueT min, ValueT max)
@@ -68,17 +71,45 @@ juce::NormalisableRange<ValueT> logRange(ValueT min, ValueT max)
     };
 }
 
-extern juce::StringArray params;
-extern const int MAX_EQS;
+static juce::String formatFrequency(float value, int decimalsHz = 1, int decimalsKHz = 2)
+{
+    if (value < 1000.0f)
+        return juce::String(value, decimalsHz) + " Hz";
+
+    return juce::String(value / 1000.0f, decimalsKHz) + " kHz";
+}
+
+static juce::String formatGain(float value, int decimals = 2)
+{
+    return juce::String(value, decimals) + " dB";
+}
+
+static juce::String formatQuality(float value, int decimals = 2)
+{
+    return juce::String(value, decimals);
+}
 
 //==============================================================================
 /**
 */
-class ProceduralEqAudioProcessor : public juce::AudioProcessor
-{
-public:
-    //==============================================================================
+extern juce::StringArray params;
+inline constexpr int MAX_EQS = 12;
 
+struct FilterUpdateReq {
+    std::atomic<bool> dirty{ false };
+    std::atomic<float> freq{ 500.0f };
+    std::atomic<float> gain{ 0.0f };
+    std::atomic<float> quality{ 1.0f };
+    std::atomic<int> type{ 0 };
+    std::atomic<bool> bypass{ true };
+    std::atomic<bool> isInit{ false };
+};
+
+//==============================================================================
+/**
+*/
+class ProceduralEqAudioProcessor : public juce::AudioProcessor, juce::AudioProcessorValueTreeState::Listener {
+public:
     //==============================================================================
     ProceduralEqAudioProcessor();
     ~ProceduralEqAudioProcessor() override;
@@ -123,16 +154,28 @@ public:
     std::vector<MonoFilter> filters;
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     juce::AudioProcessorValueTreeState tree{ *this, nullptr, "Parameters", createParameterLayout() };
-    void updateFilter(int ind);
+
+    //void updateFilter(int ind);
     void updateAllFilters();
     void updateParameter(int id, int paramInd, float newValue);
-    AnalyserFifo<float>* getAnalyserFifo() { return analyserFifo.get(); }
-    
-    std::unique_ptr<AnalyserFifo<float>> analyserFifo;
+    void updateFilter(int ind, const FilterUpdateReq& req);
 
+
+    const std::array<FilterUpdateReq, MAX_EQS>& getPendingUpdates() const { return pendingUpdates; }
+    const FilterUpdateReq& getUpdateForBand(int index) const { return pendingUpdates[index]; }
+
+    AnalyserFifo<float>* getAnalyserFifo() { return analyserFifo.get(); }
+
+    std::atomic<float>* analyserOnParam = nullptr;
+    std::atomic<float>* analyserModeParam = nullptr;
+    
 private:
+    void parameterChanged(const juce::String& parameterID, float newValue) override;
+
     juce::dsp::ProcessSpec spec;
     double lastSampleRate = 44100.0;
+    std::unique_ptr<AnalyserFifo<float>> analyserFifo;
+    std::array<FilterUpdateReq, MAX_EQS> pendingUpdates;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProceduralEqAudioProcessor)
 };

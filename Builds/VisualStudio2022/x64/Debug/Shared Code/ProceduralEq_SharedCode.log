@@ -1,135 +1,131 @@
 ﻿  PluginEditor.cpp
   PluginProcessor.cpp
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(87,56): warning C4100: 'index': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(89,67): warning C4100: 'index': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(93,83): warning C4100: 'newName': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(93,56): warning C4100: 'index': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(132,99): warning C4100: 'midiMessages': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(173,73): warning C4100: 'destData': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(178,76): warning C4100: 'sizeInBytes': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(178,66): warning C4100: 'data': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:             Type=double
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,59): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(217,52): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:             Type=double
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,58): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(220,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(229,82): warning C4100: 'newValue': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(229,67): warning C4100: 'paramID': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(251,95): warning C4100: 'shouldDrawButtonAsDown': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(251,59): warning C4100: 'shouldDrawButtonAsHighlighted': unreferenced formal parameter
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(334,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:             _Ty=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(236,14): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244: 'initializing': conversion from 'Type' to 'int', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:             Type=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(340,11): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(383,9): warning C4458: declaration of 'selectedEq' hides class member
-      C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.h(152,9):
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(102,56): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(104,67): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(108,83): warning C4100: 'newName': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(108,56): warning C4100: 'index': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(147,99): warning C4100: 'midiMessages': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(209,73): warning C4100: 'destData': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(214,76): warning C4100: 'sizeInBytes': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.cpp(214,66): warning C4100: 'data': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,59): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,59): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,59): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,59): warning C4244:             Type=double
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,59): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,52): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,52): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,52): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,52): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(221,52): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,58): warning C4244: 'argument': conversion from 'Type' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,58): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,58): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,58): warning C4244:             Type=double
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,58): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(224,50): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(233,82): warning C4100: 'newValue': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(233,67): warning C4100: 'paramID': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(254,95): warning C4100: 'shouldDrawButtonAsDown': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(254,59): warning C4100: 'shouldDrawButtonAsHighlighted': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(320,75): warning C4100: 'newValue': unreferenced formal parameter
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(338,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(343,11): warning C4244: 'initializing': conversion from 'Type' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(343,11): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(343,11): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(343,11): warning C4244:             Type=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(343,11): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(376,9): warning C4458: declaration of 'selectedEq' hides class member
+      C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.h(134,9):
       see declaration of 'ProceduralEqAudioProcessorEditor::selectedEq'
   
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(383,9): warning C4189: 'selectedEq': local variable is initialized but not referenced
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,36): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,31): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244: 'argument': conversion from 'ElementType' to 'int', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(495,28): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,39): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,33): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244: 'argument': conversion from 'Type' to 'int', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:             Type=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(502,30): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(515,23): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(526,43): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,63): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,48): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,38): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         with
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:             ElementType=float
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         and
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         [
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:             ValueType=int
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(531,31): warning C4244:         ]
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(512,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
-C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(521,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(376,9): warning C4189: 'selectedEq': local variable is initialized but not referenced
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,36): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,36): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,36): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,36): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,36): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,31): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,31): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,31): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,28): warning C4244: 'argument': conversion from 'ElementType' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,28): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,28): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,28): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(497,28): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,39): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,39): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,39): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,39): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,39): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,33): warning C4244: 'argument': conversion from 'ValueType' to 'float', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,33): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,33): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,33): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,33): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,30): warning C4244: 'argument': conversion from 'Type' to 'int', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,30): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,30): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,30): warning C4244:             Type=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(504,30): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(517,23): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(528,43): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,63): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,48): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,38): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244: 'argument': conversion from 'ElementType' to 'ValueType', possible loss of data
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         with
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:             ElementType=float
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         and
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         [
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:             ValueType=int
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(533,31): warning C4244:         ]
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(514,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(523,44): warning C4996: 'juce::Font::getStringWidth': Use GlyphArrangement or TextLayout to compute text layouts
 C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_graphics\native\juce_RenderingHelpers.h(649,36): warning C4459: declaration of 'colours' hides global declaration
   (compiling source file '../../Source/PluginEditor.cpp')
       C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(12,27):
@@ -200,13 +196,13 @@ C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\conta
   (compiling source file '../../Source/PluginEditor.cpp')
       C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(560,35):
       the template instantiation context (the oldest one first) is
-          C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(477,23):
+          C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(479,23):
           see reference to function template instantiation 'juce::Array<float,juce::DummyCriticalSection,0>::Array<double,double,double,double,double,double,double,double,double,double,double,double,double,double,int>(ElementType &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,double &&,int &&)' being compiled
           with
           [
               ElementType=float
           ]
-              C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(477,23):
+              C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginEditor.cpp(479,23):
               see the first reference to 'juce::Array<float,juce::DummyCriticalSection,0>::Array' in 'ProceduralEqAudioProcessorEditor::backgroundImage'
           C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_Array.h(134,15):
           see reference to function template instantiation 'void juce::ArrayBase<ElementType,TypeOfCriticalSectionToUse>::add<_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,_Ty,int>(ElementType &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,_Ty &&,int &&)' being compiled
@@ -274,6 +270,9 @@ C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\conta
 C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         [
 C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:             ElementType=float
 C:\Users\Cody\Desktop\PluginDocs\juce-8.0.7-windows\JUCE\modules\juce_core\containers\juce_ArrayBase.h(568,49): warning C4244:         ]
+  (compiling source file '../../Source/PluginEditor.cpp')
+  
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Source\PluginProcessor.h(87,21): warning C4505: 'formatQuality': unreferenced function with internal linkage has been removed
   (compiling source file '../../Source/PluginEditor.cpp')
   
   ProceduralEq_SharedCode.vcxproj -> C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Shared Code\ProceduralEq.lib

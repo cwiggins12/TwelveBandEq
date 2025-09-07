@@ -19,8 +19,6 @@ juce::StringArray params{ "1 Freq", "1 Gain", "1 Quality", "1 Type", "1 Bypass",
 
 juce::StringArray bands{ "BandPass", "HighPass", "LowPass", "HighShelf", "LowShelf" };
 
-const int MAX_EQS = 12;
-
 //==============================================================================
 ProceduralEqAudioProcessor::ProceduralEqAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -35,12 +33,29 @@ ProceduralEqAudioProcessor::ProceduralEqAudioProcessor()
 #endif 
 {
     lastSampleRate = getSampleRate();
+
+    for (auto& id : params)
+        tree.addParameterListener(id, this);
+
     for (int i = 0; i < MAX_EQS; ++i) {
         filters.emplace_back(MonoFilter(Coeffs::makePeakFilter(lastSampleRate, 250.0f + 500.0f * i, 0.1f, 0)));
+        auto& req = pendingUpdates[i];
+        req.freq.store(*tree.getRawParameterValue(params[0 + i * 6]));
+        req.gain.store(*tree.getRawParameterValue(params[1 + i * 6]));
+        req.quality.store(*tree.getRawParameterValue(params[2 + i * 6]));
+        req.type.store(static_cast<int>(*tree.getRawParameterValue(params[3 + i * 6])));
+        req.bypass.store(*tree.getRawParameterValue(params[4 + i * 6]) >= 0.5f);
+        req.isInit.store(*tree.getRawParameterValue(params[5 + i * 6]) >= 0.5f);
+        req.dirty.store(true);
     }
+    analyserOnParam = tree.getRawParameterValue("analyserOn");
+    analyserModeParam = tree.getRawParameterValue("analyserMode");
 }
 
-ProceduralEqAudioProcessor::~ProceduralEqAudioProcessor() {}
+ProceduralEqAudioProcessor::~ProceduralEqAudioProcessor() {
+    for (auto& id : params)
+        tree.removeParameterListener(id, this);
+}
 
 //==============================================================================
 const juce::String ProceduralEqAudioProcessor::getName() const {
@@ -103,7 +118,7 @@ void ProceduralEqAudioProcessor::prepareToPlay(double sampleRate, int samplesPer
         filter.prepare(spec);
         filter.reset();
     }
-    updateAllFilters(); //if all goes well this can be removed soon, but may just leave it for a fallback in case params are not updated properly
+    updateAllFilters();
 
     analyserFifo = std::make_unique<AnalyserFifo<float>>(fftSize * 2);
     if (analyserFifo) {
@@ -137,24 +152,45 @@ void ProceduralEqAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
 
-    juce::dsp::AudioBlock<float> block(buffer);
+    if (analyserFifo && analyserOnParam && *analyserOnParam > 0.5f)
+    {
+        if (analyserModeParam && *analyserModeParam < 0.5f) // Pre-EQ
+        {
+            auto* left = buffer.getReadPointer(0);
+            auto* right = buffer.getNumChannels() > 1 ? buffer.getReadPointer(1) : nullptr;
 
-    for (int i = 0; i < MAX_EQS; ++i) {
-        int stringIndex = 4 + (i * 6);
-        auto* isBypassed = tree.getRawParameterValue(params[stringIndex]);
-        if (isBypassed && *isBypassed < 0.5f) {
-            juce::dsp::ProcessContextReplacing<float> context(block);
-            filters[i].process(context);
+            for (int i = 0; i < buffer.getNumSamples(); ++i)
+            {
+                float sample = right ? 0.5f * (left[i] + right[i]) : left[i];
+                analyserFifo->push(sample);
+            }
         }
     }
 
-    if (analyserFifo) {
-        auto* left = buffer.getReadPointer(0);
-        auto* right = buffer.getNumChannels() > 1 ? buffer.getReadPointer(1) : nullptr;
 
-        for (int i = 0; i < buffer.getNumSamples(); ++i) {
-            float sample = right ? 0.5f * (left[i] + right[i]) : left[i];
-            analyserFifo->push(sample);
+    juce::dsp::AudioBlock<float> block(buffer);
+    juce::dsp::ProcessContextReplacing<float> context(block);
+
+    for (int i = 0; i < MAX_EQS; ++i) {
+        auto& req = pendingUpdates[i];
+        if (req.dirty.exchange(false))
+            updateFilter(i, req);
+        if (!req.bypass && req.isInit)
+            filters[i].process(context);
+    }
+
+    if (analyserFifo && analyserOnParam && *analyserOnParam > 0.5f)
+    {
+        if (analyserModeParam && *analyserModeParam > 0.5f) // Post-EQ
+        {
+            auto* left = buffer.getReadPointer(0);
+            auto* right = buffer.getNumChannels() > 1 ? buffer.getReadPointer(1) : nullptr;
+
+            for (int i = 0; i < buffer.getNumSamples(); ++i)
+            {
+                float sample = right ? 0.5f * (left[i] + right[i]) : left[i];
+                analyserFifo->push(sample);
+            }
         }
     }
 }
@@ -195,28 +231,31 @@ juce::AudioProcessorValueTreeState::ParameterLayout ProceduralEqAudioProcessor::
     for (int i = 0; i < MAX_EQS; ++i) {
         //init freq
         layout.add(std::make_unique<juce::AudioParameterFloat>(params[0 + i * 6], params[0 + i * 6], logRange<float>(20.0f, 20000.0f), 500.0f + 500.0f * i, juce::AudioParameterFloatAttributes()
-            .withStringFromValueFunction([](float value, int /*maxLen*/) {
-                return (value < 999.9f) ? (juce::String((int)std::round(value)) + " Hz") : (juce::String((int)std::round(value / 1000)) + " kHz");  // show as integer
+            .withStringFromValueFunction([](float value, int) {
+                return formatFrequency(value);
                 })
             .withValueFromStringFunction([](const juce::String& text) {
-                return text.getFloatValue(); // parse float input if user types in
+                return text.getFloatValue();
                 })
         ));
         //init gain
-        layout.add(std::make_unique<juce::AudioParameterFloat>(params[1 + i * 6],
-            params[1 + i * 6],
-            juce::NormalisableRange<float>(-72.0f, 12.0f),
-            0.0f,
-            juce::AudioParameterFloatAttributes()
+        layout.add(std::make_unique<juce::AudioParameterFloat>(params[1 + i * 6], params[1 + i * 6], juce::NormalisableRange<float>(-72.0f, 12.0f), 0.0f, juce::AudioParameterFloatAttributes()
             .withStringFromValueFunction([](float value, int) {
-                return juce::String(value, 1) + " dB";
+                return formatGain(value);
                 })
             .withValueFromStringFunction([](const juce::String& text) {
                 return text.getFloatValue();
                 })
         ));
         //init quality
-        layout.add(std::make_unique<juce::AudioParameterFloat>(params[2 + i * 6], params[2 + i * 6], juce::NormalisableRange<float>(0.1f, 10.0f, 0.05f, 1.0f), 1.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(params[2 + i * 6], params[2 + i * 6], juce::NormalisableRange<float>(0.1f, 10.0f, 0.05f, 1.0f), 1.0f, juce::AudioParameterFloatAttributes()
+            .withStringFromValueFunction([](float value, int) {
+                return formatQuality(value);
+                })
+            .withValueFromStringFunction([](const juce::String& text) {
+                return text.getFloatValue();
+                })
+        ));
         //init type(0 is peak, 1 is low cut, 2 is high cut)
         layout.add(std::make_unique<juce::AudioParameterChoice>(params[3 + i * 6], params[3 + i * 6], bands, 0));
         //init bypass
@@ -224,55 +263,64 @@ juce::AudioProcessorValueTreeState::ParameterLayout ProceduralEqAudioProcessor::
         //init init :)
         layout.add(std::make_unique<juce::AudioParameterBool>(params[5 + i * 6], params[5 + i * 6], false));
     }
+    layout.add(std::make_unique<juce::AudioParameterBool>("analyserOn", "Analyser On", true));
+    layout.add(std::make_unique<juce::AudioParameterChoice>("analyserMode", "Analyser Mode", juce::StringArray{ "Pre-EQ", "Post-EQ" }, 1));
     return layout;
 }
 
-//could do an immediate check of is init and bypass to optimize this. Will do later
-void ProceduralEqAudioProcessor::updateFilter(int ind) {
-    int stringArrStartInd = ind * 6;
-    float freq = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    float gain = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    float quality = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    int type = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    bool bypass = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    bool isInit = *tree.getRawParameterValue(params[stringArrStartInd++]);
-    if (!bypass && isInit) {
-        switch (type) {
-        case 0: {
-            *filters[ind].state = *Coeffs::makePeakFilter(lastSampleRate, freq, quality, juce::Decibels::decibelsToGain(gain, -72.0f));
+void ProceduralEqAudioProcessor::updateFilter(int ind, const FilterUpdateReq& req){
+    if (!req.bypass && req.isInit) {
+        switch (req.type) {
+        case 0:
+            *filters[ind].state = *Coeffs::makePeakFilter(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
-        }
-        case 1: {
-            *filters[ind].state = *Coeffs::makeHighPass(lastSampleRate, freq, quality);
+        case 1:
+            *filters[ind].state = *Coeffs::makeHighPass(lastSampleRate, req.freq, req.quality);
             break;
-        }
-        case 2: {
-            *filters[ind].state = *Coeffs::makeLowPass(lastSampleRate, freq, quality);
+        case 2:
+            *filters[ind].state = *Coeffs::makeLowPass(lastSampleRate, req.freq, req.quality);
             break;
-        }
-        case 3: {
-            *filters[ind].state = *Coeffs::makeHighShelf(lastSampleRate, freq, quality, gain);
+        case 3:
+            *filters[ind].state = *Coeffs::makeHighShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
-        }
-        case 4: {
-            *filters[ind].state = *Coeffs::makeLowShelf(lastSampleRate, freq, quality, gain);
+        case 4:
+            *filters[ind].state = *Coeffs::makeLowShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
-        }
         }
     }
 }
 
-void ProceduralEqAudioProcessor::updateAllFilters() {
+void ProceduralEqAudioProcessor::parameterChanged(const juce::String& paramID, float newValue) {
     for (int i = 0; i < MAX_EQS; ++i) {
-        updateFilter(i);
+        for (int p = 0; p < 6; ++p) {
+            if (params[p + i * 6] == paramID) {
+                auto& req = pendingUpdates[i];
+                switch (p) {
+                case 0: req.freq = newValue; break;
+                case 1: req.gain = newValue; break;
+                case 2: req.quality = newValue; break;
+                case 3: req.type = static_cast<int>(newValue); break;
+                case 4: req.bypass = (newValue >= 0.5f); break;
+                case 5: req.isInit = (newValue >= 0.5f); break;
+                }
+                req.dirty = true;
+                return;
+            }
+        }
     }
+}
+
+
+void ProceduralEqAudioProcessor::updateAllFilters() {
+    for (int i = 0; i < MAX_EQS; ++i)
+        updateFilter(i, pendingUpdates[i]);
 }
 
 //give eq ind, param ind, and 0 to 1 value to change
 void ProceduralEqAudioProcessor::updateParameter(int id, int paramInd, float newValue) {
-    juce::AudioProcessorParameterWithID* pParam = tree.getParameter(params[paramInd + id * 6]);
-    pParam->beginChangeGesture();
-    pParam->setValueNotifyingHost(newValue);
-    pParam->endChangeGesture();
-    updateFilter(id);
+    if (auto* pParam = tree.getParameter(params[paramInd + id * 6])) {
+        pParam->beginChangeGesture();
+        pParam->setValueNotifyingHost(newValue);
+        pParam->endChangeGesture();
+    }
 }

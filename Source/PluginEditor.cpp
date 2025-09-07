@@ -94,15 +94,18 @@ SelectedEqComponent::SelectedEqComponent(ProceduralEqAudioProcessor& p, int id) 
 
     addAndMakeVisible(freqSlider);
     freqSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    freqSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[0 + id * 6], freqSlider));
+    //freqSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[0 + id * 6], freqSlider));
+    freqSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[0 + currEq * 6], freqSlider);
 
     addAndMakeVisible(gainSlider);
     gainSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    gainSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[1 + id * 6], gainSlider));
+    //gainSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[1 + id * 6], gainSlider));
+    gainSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[1 + currEq * 6], gainSlider);
 
     addAndMakeVisible(qualitySlider);
     qualitySlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    qualitySliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[2 + id * 6], qualitySlider));
+    //qualitySliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[2 + id * 6], qualitySlider));
+    qualitySliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[2 + currEq * 6], qualitySlider);
 
     addAndMakeVisible(typeComboBox);
     typeComboBox.addItem("BandPass", 1);
@@ -110,10 +113,12 @@ SelectedEqComponent::SelectedEqComponent(ProceduralEqAudioProcessor& p, int id) 
     typeComboBox.addItem("LowPass", 3);
     typeComboBox.addItem("HighShelf", 4);
     typeComboBox.addItem("LowShelf", 5);
-    typeBoxAttachment.reset(new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.tree, params[3 + id * 6], typeComboBox));
+    //typeBoxAttachment.reset(new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.tree, params[3 + id * 6], typeComboBox));
+    typeBoxAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.tree, params[3 + currEq * 6], typeComboBox);
 
     addAndMakeVisible(bypassButton);
-    bypassButtonAttachment.reset(new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.tree, params[4 + id * 6], bypassButton));
+    //bypassButtonAttachment.reset(new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.tree, params[4 + id * 6], bypassButton));
+    bypassButtonAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, params[4 + currEq * 6], bypassButton);
 
     addAndMakeVisible(deleteButton);
     deleteButton.onClick = [this] {
@@ -130,11 +135,11 @@ SelectedEqComponent::~SelectedEqComponent() {}
 void SelectedEqComponent::updateEqAndSliders(int id) {
     currEq = id;
 
-    freqSliderAttachment.reset();
-    gainSliderAttachment.reset();
-    qualitySliderAttachment.reset();
-    typeBoxAttachment.reset();
-    bypassButtonAttachment.reset();
+    //freqSliderAttachment.reset();
+    //gainSliderAttachment.reset();
+    //qualitySliderAttachment.reset();
+    //typeBoxAttachment.reset();
+    //bypassButtonAttachment.reset();
 
     freqSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[0 + currEq * 6], freqSlider);
     gainSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[1 + currEq * 6], gainSlider);
@@ -165,7 +170,6 @@ void SelectedEqComponent::resized() {
 */
 ResponseCurveComponent::ResponseCurveComponent(ProceduralEqAudioProcessor& p, ProceduralEqAudioProcessorEditor& e) : audioProcessor(p), editor(e) {
     setInterceptsMouseClicks(false, false);
-    //set up listeners for all the params pls
     for (int i = 0; i < params.size(); ++i)
         audioProcessor.tree.addParameterListener(params[i], this);
 }
@@ -195,11 +199,11 @@ void ResponseCurveComponent::paint(juce::Graphics& g) {
         double frac = double(i) / double(w - 1);
         auto freq = mapToLog10(frac, 20.0, 20000.0);
         for (int j = 0; j < MAX_EQS; ++j) {
-            auto* isInit = audioProcessor.tree.getRawParameterValue(params[5 + j * 6]);
-            if (isInit && *isInit >= 0.5f) {
-                auto* isBypassed = audioProcessor.tree.getRawParameterValue(params[4 + j * 6]);
-                if (isBypassed && *isBypassed < 0.5f) {
-                    mag *= audioProcessor.filters[j].state->getMagnitudeForFrequency(freq, sampleRate);
+            const auto& req = audioProcessor.getPendingUpdates()[j];
+            if (req.isInit && !req.bypass) {
+                auto* coeffs = audioProcessor.filters[j].state.get();
+                if (coeffs != nullptr) {
+                    mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
                 }
             }
         }
@@ -236,7 +240,6 @@ void ResponseCurveComponent::parameterChanged(const juce::String& paramID, float
 DraggableButton::DraggableButton(ProceduralEqAudioProcessor& p, ProceduralEqAudioProcessorEditor& e, int eqId) :
                                  Button(juce::String()), audioProcessor(p), editor(e), associatedEq(eqId), circleColour(colours[eqId]) {
     setSize(20, 20);
-
     audioProcessor.tree.addParameterListener(params[0 + eqId * 6], this); //freq
     audioProcessor.tree.addParameterListener(params[1 + eqId * 6], this); //gain
     audioProcessor.tree.addParameterListener(params[4 + eqId * 6], this); //bypass
@@ -302,8 +305,9 @@ void DraggableButton::updateParamsFromPosition() {
 }
 
 void DraggableButton::updatePositionFromParams() {
-    setCentreFromFreq(getCurrFreq());
-    setCentreFromGain(getCurrGain());
+    const auto& req = audioProcessor.getUpdateForBand(associatedEq);
+    setCentreFromFreq(req.freq);
+    setCentreFromGain(req.gain);
 }
 
 //may wanna extend radius a bit so user doesn't have to click exactly in it
@@ -316,13 +320,13 @@ bool DraggableButton::hitTest(int x, int y) {
 void DraggableButton::parameterChanged(const juce::String& paramID, float newValue) {
     if (editor.selectedEq != associatedEq)
         return; // ignore param changes for unselected buttons
-
+    const auto& req = audioProcessor.getUpdateForBand(associatedEq);
     if (paramID == params[0 + associatedEq * 6])
-        setCentreFromFreq(newValue);
+        setCentreFromFreq(req.freq);
     else if (paramID == params[1 + associatedEq * 6])
-        setCentreFromGain(newValue);
+        setCentreFromGain(req.gain);
     else if (paramID == params[4 + associatedEq * 6]) {
-        isBypassed = newValue >= 0.5f;
+        isBypassed = req.bypass;
         repaint();
     }
     updateTooltip();
@@ -332,13 +336,11 @@ void DraggableButton::setCentreFromFreq(float freq) {
     auto range = logRange<float>(20.0f, 20000.0f);
     float norm = range.convertTo0to1(freq);
     int x = editor.buttonBounds.getX() + norm * editor.buttonBounds.getWidth();
-
     setCentrePosition(x, getBounds().getCentreY());
 }
 
 void DraggableButton::setCentreFromGain(float gain) {
     int y = juce::jmap(gain, -72.0f, 12.0f, float(editor.buttonBounds.getBottom()), float(editor.buttonBounds.getY()));
-
     setCentrePosition(getBounds().getCentreX(), y);
 }
 
@@ -351,20 +353,11 @@ void DraggableButton::resetEq() {
     editor.secVisiblityCheck();
 }
 
-void DraggableButton::updateTooltip() { //needs work I think
-    auto* freq = audioProcessor.tree.getRawParameterValue(params[0 + associatedEq * 6]);
-    auto* gain = audioProcessor.tree.getRawParameterValue(params[1 + associatedEq * 6]);
-
-    if (freq && gain) {
-
-        juce::String tip;
-        tip << juce::String(*freq, 1) << " Hz, "
-            << juce::String(*gain, 1) << " dB";
-        setTooltip(tip);
-    }
-    else {
-        setTooltip({});
-    }
+void DraggableButton::updateTooltip() {
+    const auto& req = audioProcessor.getUpdateForBand(associatedEq);
+    juce::String tip;
+    tip << formatFrequency(req.freq) << ", " << formatGain(req.gain);
+    setTooltip(tip);
 }
 
 
@@ -387,6 +380,15 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
         addChildComponent(buttonArr[i]);
     }
     addChildComponent(selectedEqComponent);
+    analyserModeBox.addItem("Pre-EQ", 1);
+    analyserModeBox.addItem("Post-EQ", 2);
+    addAndMakeVisible(analyserOnButton);
+    addAndMakeVisible(analyserModeBox);
+    analyserOnAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserOn", analyserOnButton);
+    analyserModeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.tree, "analyserMode", analyserModeBox);
+    analyserOnButton.onClick = [this]() {
+        analyser.setVisible(analyserOnButton.getToggleState());
+    };
     startTimerHz(TIMER_FPS);
 }
 
@@ -407,6 +409,9 @@ void ProceduralEqAudioProcessorEditor::resized() {
     auto area = getRenderArea();
     analyser.setBounds(area);
     rcc.setBounds(area);
+    auto buttonHeight = getHeight() - 80;
+    analyserOnButton.setBounds(40, buttonHeight, 60, 30);
+    analyserModeBox.setBounds(100, buttonHeight, 60, 30);
 }
 
 void ProceduralEqAudioProcessorEditor::mouseDoubleClick(const juce::MouseEvent& event) {

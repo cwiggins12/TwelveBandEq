@@ -1,13 +1,9 @@
 TODO:
-smooth spectrum analyser
-fix hover tooltips
 optimize response curve(look into getMagnitudeForFrequencyArray() and an algo to get the bandwidth of a given filter)
 finish up save/load
 fix up background image
-bug when eq is at -72.0 the makes rcc and analyser disappear
-make spectrum analyser listen rather than calling per frame
 make the selected eq component look decent
 
 THINGS TO ADD LATER:
-use SmoothedValue<float>?
+use SmoothedValue<float>s for spectrum analyser
 make resizable
