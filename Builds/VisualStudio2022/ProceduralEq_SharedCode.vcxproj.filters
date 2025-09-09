@@ -694,6 +694,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\CustomLookAndFeel.cpp">
+      <Filter>ProceduralEq\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>ProceduralEq\Source</Filter>
     </ClCompile>
@@ -3669,6 +3672,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CustomLookAndFeel.h">
+      <Filter>ProceduralEq\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>ProceduralEq\Source</Filter>
     </ClInclude>

@@ -42,7 +42,6 @@ void SpectrumAnalyser::onEditorTimer() {
         if (samplesToCopy < fftSize) {
             std::fill(fftData + samplesToCopy, fftData + fftSize, 0.0f);
         }
-
         window.multiplyWithWindowingTable(fftData, fftSize);
         forwardFFT.performFrequencyOnlyForwardTransform(fftData);
 
@@ -54,7 +53,6 @@ void SpectrumAnalyser::onEditorTimer() {
 void SpectrumAnalyser::drawNextFrameOfSpectrum() {
     auto mindB = -100.0f;
     auto maxdB = 24.0f;
-
     for (int i = 0; i < scopeSize; ++i) {
         auto skewedProportionX = 1.0f - std::exp(std::log(1.0 - (double)i / (double)scopeSize) * 0.2);
         auto fftIndex = juce::jlimit(0, fftSize / 2, (int)(skewedProportionX * (double)(fftSize / 2)));
@@ -67,7 +65,8 @@ void SpectrumAnalyser::drawNextFrameOfSpectrum() {
     }
 }
 
-//almost positive making the rounded is way slower than doing the math for cubic per each 3 points
+//almost positive making the rounded is way slower than doing the math for cubic per each 3 points. Also maybe try to use SmoothedValues to make it jump around less
+//need to make it change colors if its pre/post, prolly just need to call a getter in the editor
 void SpectrumAnalyser::paint(juce::Graphics& g) {
     g.setColour(juce::Colours::lime);
     auto w = (float)getWidth();
@@ -81,45 +80,66 @@ void SpectrumAnalyser::paint(juce::Graphics& g) {
         p.lineTo(juce::jmap((float)i, 0.0f, (float)scopeSize - 1.0f, 0.0f, w),
             mapY(scopeData[i]));
     juce::Path rounded = p.createPathWithRoundedCorners(16.0f);
-    //g.strokePath(p, juce::PathStrokeType(2.0f));
     g.strokePath(rounded, juce::PathStrokeType(2.0f));
 }
 
 //==============================================================================
 /**
 */
+//make this look prettier pls
 SelectedEqComponent::SelectedEqComponent(ProceduralEqAudioProcessor& p, int id) : audioProcessor(p), currEq(id) {
-    setTopLeftPosition(450, 500);
-    setSize(300, 150);
+    setTopLeftPosition(400, 450);
+    setSize(300, 200);
+    auto w = getWidth() / 3;
 
     addAndMakeVisible(freqSlider);
     freqSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    //freqSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[0 + id * 6], freqSlider));
+    freqSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, w, textboxHeight);
     freqSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[0 + currEq * 6], freqSlider);
+    addAndMakeVisible(freqLabel);
+    freqLabel.setText("FREQ", juce::NotificationType::dontSendNotification);
+    freqLabel.setJustificationType(juce::Justification::centred);
+    freqLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 
     addAndMakeVisible(gainSlider);
     gainSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    //gainSliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[1 + id * 6], gainSlider));
+    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, w, textboxHeight);
     gainSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[1 + currEq * 6], gainSlider);
+    addAndMakeVisible(gainLabel);
+    gainLabel.setText("GAIN", juce::NotificationType::dontSendNotification);
+    gainLabel.setJustificationType(juce::Justification::centred);
+    gainLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 
     addAndMakeVisible(qualitySlider);
     qualitySlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
-    //qualitySliderAttachment.reset(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.tree, params[2 + id * 6], qualitySlider));
+    qualitySlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, w, textboxHeight);
     qualitySliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[2 + currEq * 6], qualitySlider);
+    addAndMakeVisible(qualityLabel);
+    qualityLabel.setText("Q", juce::NotificationType::dontSendNotification);
+    qualityLabel.setJustificationType(juce::Justification::centred);
+    qualityLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 
     addAndMakeVisible(typeComboBox);
-    typeComboBox.addItem("BandPass", 1);
-    typeComboBox.addItem("HighPass", 2);
-    typeComboBox.addItem("LowPass", 3);
-    typeComboBox.addItem("HighShelf", 4);
-    typeComboBox.addItem("LowShelf", 5);
-    //typeBoxAttachment.reset(new juce::AudioProcessorValueTreeState::ComboBoxAttachment(audioProcessor.tree, params[3 + id * 6], typeComboBox));
+    typeComboBox.addItem("BANDPASS", 1);
+    typeComboBox.addItem("HIGHPASS", 2);
+    typeComboBox.addItem("LOWPASS", 3);
+    typeComboBox.addItem("HIGH-SHELF", 4);
+    typeComboBox.addItem("LOW-SHELF", 5);
     typeBoxAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.tree, params[3 + currEq * 6], typeComboBox);
+    addAndMakeVisible(typeLabel);
+    typeLabel.setText("TYPE", juce::NotificationType::dontSendNotification);
+    typeLabel.setJustificationType(juce::Justification::centred);
+    typeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 
     addAndMakeVisible(bypassButton);
-    //bypassButtonAttachment.reset(new juce::AudioProcessorValueTreeState::ButtonAttachment(audioProcessor.tree, params[4 + id * 6], bypassButton));
+    bypassButton.setClickingTogglesState(true);
     bypassButtonAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, params[4 + currEq * 6], bypassButton);
+    addAndMakeVisible(bypassLabel);
+    bypassLabel.setText("BYPASS", juce::NotificationType::dontSendNotification);
+    bypassLabel.setJustificationType(juce::Justification::centred);
+    bypassLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 
+    deleteButton.setLookAndFeel(&lnfb);
     addAndMakeVisible(deleteButton);
     deleteButton.onClick = [this] {
         if (currEq >= 0) {
@@ -128,19 +148,23 @@ SelectedEqComponent::SelectedEqComponent(ProceduralEqAudioProcessor& p, int id) 
             }
         }
     };
+    addAndMakeVisible(deleteLabel);
+    deleteLabel.setText("DELETE", juce::NotificationType::dontSendNotification);
+    deleteLabel.setJustificationType(juce::Justification::centred);
+    deleteLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 }
 
 SelectedEqComponent::~SelectedEqComponent() {}
 
 void SelectedEqComponent::updateEqAndSliders(int id) {
+    //empty the sliders to not trigger a param change to prior eq
+    freqSliderAttachment.reset();
+    gainSliderAttachment.reset();
+    qualitySliderAttachment.reset();
+    typeBoxAttachment.reset();
+    bypassButtonAttachment.reset();
+    //set new eq and attach all params to sliders
     currEq = id;
-
-    //freqSliderAttachment.reset();
-    //gainSliderAttachment.reset();
-    //qualitySliderAttachment.reset();
-    //typeBoxAttachment.reset();
-    //bypassButtonAttachment.reset();
-
     freqSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[0 + currEq * 6], freqSlider);
     gainSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[1 + currEq * 6], gainSlider);
     qualitySliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[2 + currEq * 6], qualitySlider);
@@ -150,19 +174,39 @@ void SelectedEqComponent::updateEqAndSliders(int id) {
 }
 
 void SelectedEqComponent::paint(juce::Graphics& g) {
-    g.fillAll(juce::Colours::grey);
+    auto bounds = getLocalBounds().toFloat();
+    g.setColour(juce::Colours::grey);
+    g.fillRoundedRectangle(bounds, 4.0f);
+    g.setColour(juce::Colours::white);
+    g.drawRoundedRectangle(bounds.reduced(1.0f), 4.0f, 2.0f);
 }
 
 void SelectedEqComponent::resized() {
     auto bounds = getLocalBounds();
     auto w = bounds.getWidth() / 3;
-    auto top = bounds.removeFromTop(75);
-    freqSlider.setBounds(top.removeFromLeft(w));
-    qualitySlider.setBounds(top.removeFromRight(w));
-    gainSlider.setBounds(top);
-    typeComboBox.setBounds(bounds.removeFromLeft(w));
-    deleteButton.setBounds(bounds.removeFromRight(w));
-    bypassButton.setBounds(bounds);
+    auto top = bounds.removeFromTop(100);
+
+    auto fArea = top.removeFromLeft(w);
+    freqLabel.setBounds(fArea.removeFromTop(labelHeight));
+    freqSlider.setBounds(makeSquareForSlider(fArea).withBottom(fArea.getBottom()));
+
+    auto qArea = top.removeFromRight(w);
+    qualityLabel.setBounds(qArea.removeFromTop(labelHeight));
+    qualitySlider.setBounds(makeSquareForSlider(qArea).withBottom(qArea.getBottom()));
+
+    gainLabel.setBounds(top.removeFromTop(labelHeight));
+    gainSlider.setBounds(makeSquareForSlider(top).withBottom(top.getBottom()));
+
+    auto tArea = bounds.removeFromLeft(w);
+    typeLabel.setBounds(tArea.removeFromTop(labelHeight));
+    typeComboBox.setBounds(tArea.reduced(10));
+
+    auto dArea = bounds.removeFromRight(w);
+    deleteLabel.setBounds(dArea.removeFromTop(labelHeight));
+    deleteButton.setBounds(makeSquare(dArea.reduced(10)));
+
+    bypassLabel.setBounds(bounds.removeFromTop(labelHeight));
+    bypassButton.setBounds(makeSquare(bounds.reduced(10)));
 }
 
 //==============================================================================
@@ -179,50 +223,156 @@ ResponseCurveComponent::~ResponseCurveComponent() {
         audioProcessor.tree.removeParameterListener(params[i], this);
 }
 
-//this draws the response curve. I hate this. eventually this needs to be changed to check the bandwidth of the changed eq and only have to check the pixels within that bandwidth
+//eventually this needs to be changed to check the bandwidth of the changed eq and only have to check the pixels within that bandwidth
 void ResponseCurveComponent::paint(juce::Graphics& g) {
+    //using namespace juce;
+
+    //auto responseArea = getLocalBounds();
+    //const int w = responseArea.getWidth();
+    //if (w <= 0)
+    //    return;
+    //auto sampleRate = audioProcessor.getSampleRate();
+    //if (sampleRate <= 0.0)
+    //    sampleRate = 44100.0;
+
+    //std::vector<double> mags;
+    //mags.resize(w);
+
+    //for (int i = 0; i < w; ++i) {
+    //    double mag = 1.0f;
+    //    double frac = double(i) / double(w - 1);
+    //    auto freq = mapToLog10(frac, 20.0, 20000.0);
+    //    for (int j = 0; j < MAX_EQS; ++j) {
+    //        const auto& req = audioProcessor.getPendingUpdates()[j];
+    //        if (req.isInit && !req.bypass) {
+    //            auto* coeffs = audioProcessor.filters[j].state.get();
+    //            if (coeffs != nullptr) {
+    //                mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
+    //            }
+    //        }
+    //    }
+    //    mags[i] = Decibels::gainToDecibels(mag);
+    //}
+
+    //Path responseCurve;
+
+    //const double outputMin = responseArea.getBottom();
+    //const double outputMax = responseArea.getY();
+    //auto map = [outputMin, outputMax](double input) {
+    //    return jmap(input, -72.0, 24.0, outputMin, outputMax);
+    //};
+
+    //responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
+
+    //for (size_t i = 1; i < mags.size(); ++i)
+    //    responseCurve.lineTo(responseArea.getX() + i, map(mags[i]));
+
+    //g.setColour(Colours::orange);
+    //g.drawRoundedRectangle(responseArea.toFloat(), 4.0f, 1.0f);
+
+    //g.setColour(Colours::white);
+    //g.strokePath(responseCurve, PathStrokeType(2.0f));
+
+    ////////auto bounds = g.getClipBounds();
+    ////////if (bounds.isEmpty())
+    ////////    return;
+
+    ////////auto fullArea = getLocalBounds();
+    ////////auto width = fullArea.getWidth();
+    ////////auto height = fullArea.getHeight();
+
+    ////////auto clipLeft = bounds.getX();
+    ////////auto clipRight = bounds.getRight();
+
+    ////////juce::Path responseCurve;
+
+    ////////auto sampleRate = audioProcessor.getSampleRate();
+    ////////if (sampleRate <= 0.0)
+    ////////    sampleRate = 44100.0;
+
+    ////////for (int x = clipLeft; x < clipRight; ++x)
+    ////////{
+    ////////    auto normX = (float)x / (float)width;
+    ////////    auto freq = juce::mapToLog10(normX, 20.0f, 20000.0f);
+
+    ////////    double magnitude = 1.0;
+
+    ////////    for (int band = 0; band < MAX_EQS; ++band)
+    ////////    {
+    ////////        auto coeffs = audioProcessor.filters[band].state;
+    ////////        if (coeffs != nullptr)
+    ////////            magnitude *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
+    ////////    }
+
+    ////////    auto dB = juce::Decibels::gainToDecibels(magnitude);
+    ////////    auto y = juce::jmap((float)dB, -72.0f, 24.0f, (float)height, 0.0f);
+
+    ////////    if (x == clipLeft)
+    ////////        responseCurve.startNewSubPath((float)x, y);
+    ////////    else
+    ////////        responseCurve.lineTo((float)x, y);
+    ////////}
+
+    ////////g.setColour(juce::Colours::white);
+    ////////g.strokePath(responseCurve, juce::PathStrokeType(2.0f));
+
     using namespace juce;
 
     auto responseArea = getLocalBounds();
     const int w = responseArea.getWidth();
     if (w <= 0)
         return;
+
     auto sampleRate = audioProcessor.getSampleRate();
     if (sampleRate <= 0.0)
         sampleRate = 44100.0;
 
-    std::vector<double> mags;
-    mags.resize(w);
+    // Only compute for the invalidated region
+    auto clip = g.getClipBounds().getIntersection(responseArea);
+    if (clip.isEmpty())
+        return;
 
-    for (int i = 0; i < w; ++i) {
-        double mag = 1.0f;
-        double frac = double(i) / double(w - 1);
-        auto freq = mapToLog10(frac, 20.0, 20000.0);
-        for (int j = 0; j < MAX_EQS; ++j) {
-            const auto& req = audioProcessor.getPendingUpdates()[j];
-            if (req.isInit && !req.bypass) {
-                auto* coeffs = audioProcessor.filters[j].state.get();
-                if (coeffs != nullptr) {
-                    mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
-                }
-            }
-        }
-        mags[i] = Decibels::gainToDecibels(mag);
-    }
+    // Utility lambdas
+    auto xToFreq = [&](int x) {
+        double norm = (x - responseArea.getX()) / double(responseArea.getWidth());
+        return mapToLog10(norm, 20.0, 20000.0);
+        };
+    auto mapY = [&](double db) {
+        return jmap(db, -72.0, 24.0,
+            (double)responseArea.getBottom(),
+            (double)responseArea.getY());
+        };
 
     Path responseCurve;
 
-    const double outputMin = responseArea.getBottom();
-    const double outputMax = responseArea.getY();
-    auto map = [outputMin, outputMax](double input) {
-        return jmap(input, -72.0, 24.0, outputMin, outputMax);
-    };
+    // Start curve at left edge of clip region
+    double f0 = xToFreq(clip.getX());
+    double mag0 = 1.0;
+    for (int j = 0; j < MAX_EQS; ++j) {
+        const auto& req = audioProcessor.getPendingUpdates()[j];
+        if (req.isInit && !req.bypass) {
+            if (auto* coeffs = audioProcessor.filters[j].state.get())
+                mag0 *= coeffs->getMagnitudeForFrequency(f0, sampleRate);
+        }
+    }
+    responseCurve.startNewSubPath(clip.getX(), mapY(Decibels::gainToDecibels(mag0)));
 
-    responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
+    // Build curve across only the clipped width
+    for (int x = clip.getX() + 1; x <= clip.getRight(); ++x) {
+        double freq = xToFreq(x);
+        double mag = 1.0;
+        for (int j = 0; j < MAX_EQS; ++j) {
+            const auto& req = audioProcessor.getPendingUpdates()[j];
+            if (req.isInit && !req.bypass) {
+                if (auto* coeffs = audioProcessor.filters[j].state.get())
+                    mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
+            }
+        }
+        double db = Decibels::gainToDecibels(mag);
+        responseCurve.lineTo(x, mapY(db));
+    }
 
-    for (size_t i = 1; i < mags.size(); ++i)
-        responseCurve.lineTo(responseArea.getX() + i, map(mags[i]));
-
+    // Draw
     g.setColour(Colours::orange);
     g.drawRoundedRectangle(responseArea.toFloat(), 4.0f, 1.0f);
 
@@ -230,8 +380,29 @@ void ResponseCurveComponent::paint(juce::Graphics& g) {
     g.strokePath(responseCurve, PathStrokeType(2.0f));
 }
 
+//call clipped paint here to optimize eventually
 void ResponseCurveComponent::parameterChanged(const juce::String& paramID, float newValue) {
-    repaint();
+    //int paramInd = params.indexOf(paramID);       
+    //int eq = paramInd / 6;
+    ////get bandwidth of eq
+    //repaint();
+    int eq = params.indexOf(paramID) / 6;
+    const auto& req = audioProcessor.getUpdateForBand(eq);
+
+    double freqLow = req.freq / std::sqrt(req.quality);
+    double freqHigh = req.freq * std::sqrt(req.quality);
+
+    auto responseArea = getLocalBounds();
+    auto freqToX = [&](double freq) {
+        double norm = juce::mapFromLog10(freq, 20.0, 20000.0);
+        return responseArea.getX() + norm * responseArea.getWidth();
+        };
+
+    int x1 = (int)freqToX(freqLow);
+    int x2 = (int)freqToX(freqHigh);
+
+    repaint(juce::Rectangle<int>(x1, responseArea.getY(),
+        x2 - x1 + 1, responseArea.getHeight()));
 }
 
 //==============================================================================
@@ -256,6 +427,7 @@ void DraggableButton::paintButton(juce::Graphics& g, bool shouldDrawButtonAsHigh
         g.setColour(juce::Colours::grey);
     else
         g.setColour(circleColour);
+
     auto bounds = getLocalBounds().toFloat();
     g.fillEllipse(bounds);
 
@@ -318,8 +490,6 @@ bool DraggableButton::hitTest(int x, int y) {
 }
 
 void DraggableButton::parameterChanged(const juce::String& paramID, float newValue) {
-    if (editor.selectedEq != associatedEq)
-        return; // ignore param changes for unselected buttons
     const auto& req = audioProcessor.getUpdateForBand(associatedEq);
     if (paramID == params[0 + associatedEq * 6])
         setCentreFromFreq(req.freq);
@@ -379,25 +549,34 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
         buttonArr.add(new DraggableButton(audioProcessor, *this, i));
         addChildComponent(buttonArr[i]);
     }
+    selectedEqComponent.setLookAndFeel(&lnfa);
     addChildComponent(selectedEqComponent);
-    analyserModeBox.addItem("Pre-EQ", 1);
-    analyserModeBox.addItem("Post-EQ", 2);
+
     addAndMakeVisible(analyserOnButton);
-    addAndMakeVisible(analyserModeBox);
     analyserOnAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserOn", analyserOnButton);
-    analyserModeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.tree, "analyserMode", analyserModeBox);
+    analyserOnButton.setComponentID("analyserOn");
+    analyserOnButton.setLookAndFeel(&lnfc);
+    analyserOnButton.onClick = [this]() {
+        analyser.setVisible(analyserOnButton.getToggleState());
+    };
+
+    addAndMakeVisible(analyserModeButton);
+    analyserModeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserMode", analyserModeButton);
+    analyserOnButton.setLookAndFeel(&lnfa);
     analyserOnButton.onClick = [this]() {
         analyser.setVisible(analyserOnButton.getToggleState());
     };
     startTimerHz(TIMER_FPS);
 }
 
-ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {}
+ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {
+    selectedEqComponent.setLookAndFeel(nullptr);
+    analyserOnButton.setLookAndFeel(nullptr);
+}
 
 //==============================================================================
 void ProceduralEqAudioProcessorEditor::timerCallback() {
     analyser.onEditorTimer();
-    //rcc.repaint();
 }
 
 void ProceduralEqAudioProcessorEditor::paint(juce::Graphics& g) {
@@ -411,7 +590,7 @@ void ProceduralEqAudioProcessorEditor::resized() {
     rcc.setBounds(area);
     auto buttonHeight = getHeight() - 80;
     analyserOnButton.setBounds(40, buttonHeight, 60, 30);
-    analyserModeBox.setBounds(100, buttonHeight, 60, 30);
+    analyserModeButton.setBounds(100, buttonHeight, 60, 30);
 }
 
 void ProceduralEqAudioProcessorEditor::mouseDoubleClick(const juce::MouseEvent& event) {
@@ -472,7 +651,7 @@ juce::Rectangle<int> ProceduralEqAudioProcessorEditor::getRenderArea() {
     return bounds;
 }
 
-//fix up the labels being printed on the side they look like shit
+//make this look prettier pls
 juce::Rectangle<int> ProceduralEqAudioProcessorEditor::backgroundImage() {
     using namespace juce;
     background = Image(Image::PixelFormat::RGB, getWidth(), getHeight(), true);

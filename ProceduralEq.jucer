@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="xxS3y7" name="ProceduralEq" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Cody Wiggins"
+              companyWebsite="http://codywigginsdev.neocities.org/" companyEmail="codywiggins2112@gmail.com"
+              pluginFormats="buildStandalone,buildUnity,buildVST3" pluginVST3Category="EQ"
+              pluginAAXCategory="1">
   <MAINGROUP id="CNXn15" name="ProceduralEq">
     <GROUP id="{CB32DA00-670C-6F69-CEDB-0A088A85A833}" name="Source">
+      <FILE id="oenZua" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/CustomLookAndFeel.cpp"/>
+      <FILE id="IBu98M" name="CustomLookAndFeel.h" compile="0" resource="0"
+            file="Source/CustomLookAndFeel.h"/>
       <FILE id="imhxpm" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="XdAoKS" name="PluginProcessor.h" compile="0" resource="0"

@@ -3,16 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Builds\\VisualStudio2022\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{EA3D0D39-2600-079D-9FCE-48CD97AD8091}|ProceduralEq_SharedCode.vcxproj|C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +28,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "CustomLookAndFeel.h",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.h",
+              "RelativeDocumentMoniker": "..\\..\\Source\\CustomLookAndFeel.h",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.h",
+              "RelativeToolTip": "..\\..\\Source\\CustomLookAndFeel.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-09-09T15:29:06.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomLookAndFeel.cpp",
+              "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Source\\CustomLookAndFeel.cpp",
+              "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\CustomLookAndFeel.cpp",
+              "RelativeToolTip": "..\\..\\Source\\CustomLookAndFeel.cpp",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-09-09T15:29:03.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PluginEditor.h",
               "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h",
               "RelativeDocumentMoniker": "..\\..\\Source\\PluginEditor.h",
               "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.h",
               "RelativeToolTip": "..\\..\\Source\\PluginEditor.h",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJMAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAAAKQAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-30T20:56:13.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "PluginEditor.cpp",
               "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp",
               "RelativeDocumentMoniker": "..\\..\\Source\\PluginEditor.cpp",
               "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginEditor.cpp",
               "RelativeToolTip": "..\\..\\Source\\PluginEditor.cpp",
-              "ViewState": "AgIAAMUBAAAAAAAAAAAAAIYBAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAADsCAAAAAAAAAAAAAHEBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-21T05:58:07.358Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "PluginProcessor.h",
               "DocumentMoniker": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h",
               "RelativeDocumentMoniker": "..\\..\\Source\\PluginProcessor.h",
               "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.h",
               "RelativeToolTip": "..\\..\\Source\\PluginProcessor.h",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAAAKkAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-21T05:58:03.955Z",
+              "WhenOpened": "2025-09-09T23:43:25.549Z",
               "EditorCaption": ""
             },
             {
@@ -71,9 +103,9 @@
               "RelativeDocumentMoniker": "..\\..\\Source\\PluginProcessor.cpp",
               "ToolTip": "C:\\Users\\Cody\\Desktop\\PluginDocs\\Repos\\ProceduralEq\\Source\\PluginProcessor.cpp",
               "RelativeToolTip": "..\\..\\Source\\PluginProcessor.cpp",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAMIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-21T05:58:05.532Z",
+              "WhenOpened": "2025-09-09T23:43:29.136Z",
               "EditorCaption": ""
             }
           ]

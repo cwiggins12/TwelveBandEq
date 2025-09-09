@@ -1,9 +1,8 @@
 TODO:
-optimize response curve(look into getMagnitudeForFrequencyArray() and an algo to get the bandwidth of a given filter)
-finish up save/load
-fix up background image
-make the selected eq component look decent
+add an info button, minimize selectedEqComponent button, fix RTA buttons
 
-THINGS TO ADD LATER:
-use SmoothedValue<float>s for spectrum analyser
+THINGS TO ADD POTENTIALLY:
+fix up background image
+optimize response curve
 make resizable
+Try using SmoothedValue<float>s for spectrum analyser?

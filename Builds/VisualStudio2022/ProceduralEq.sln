@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - VST3", "Proc
 		{5E1B0E1E-4B3C-C864-8678-86DDF9870380} = {5E1B0E1E-4B3C-C864-8678-86DDF9870380}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - Unity Plugin", "ProceduralEq_UnityPlugin.vcxproj", "{E3BD4047-7008-0129-5CF5-B4AB9ED934F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA3D0D39-2600-079D-9FCE-48CD97AD8091} = {EA3D0D39-2600-079D-9FCE-48CD97AD8091}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - Shared Code", "ProceduralEq_SharedCode.vcxproj", "{EA3D0D39-2600-079D-9FCE-48CD97AD8091}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProceduralEq - VST3 Manifest Helper", "ProceduralEq_VST3ManifestHelper.vcxproj", "{5E1B0E1E-4B3C-C864-8678-86DDF9870380}"
@@ -31,6 +36,10 @@ Global
 		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Debug|x64.Build.0 = Debug|x64
 		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Release|x64.ActiveCfg = Release|x64
 		{934922E9-2AA4-05D7-4DB6-FB26E821C944}.Release|x64.Build.0 = Release|x64
+		{E3BD4047-7008-0129-5CF5-B4AB9ED934F7}.Debug|x64.ActiveCfg = Debug|x64
+		{E3BD4047-7008-0129-5CF5-B4AB9ED934F7}.Debug|x64.Build.0 = Debug|x64
+		{E3BD4047-7008-0129-5CF5-B4AB9ED934F7}.Release|x64.ActiveCfg = Release|x64
+		{E3BD4047-7008-0129-5CF5-B4AB9ED934F7}.Release|x64.Build.0 = Release|x64
 		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Debug|x64.ActiveCfg = Debug|x64
 		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Debug|x64.Build.0 = Debug|x64
 		{EA3D0D39-2600-079D-9FCE-48CD97AD8091}.Release|x64.ActiveCfg = Release|x64

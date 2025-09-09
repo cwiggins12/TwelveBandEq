@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "CustomLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -56,16 +57,31 @@ struct SelectedEqComponent : juce::Component {
     void resized() override;
 
 private:
+    auto makeSquare(juce::Rectangle<int> area) {
+        int side = std::min(area.getWidth(), area.getHeight());
+        return area.withSizeKeepingCentre(side, side);
+    }
+
+    auto makeSquareForSlider(juce::Rectangle<int> area) {
+        auto knobArea = area.removeFromTop(area.getHeight() - textboxHeight);
+        int side = std::min(knobArea.getWidth(), knobArea.getHeight());
+        return knobArea.withSizeKeepingCentre(side, side);
+    }
+
     ProceduralEqAudioProcessor& audioProcessor;
+    int labelHeight = 20;
+    int textboxHeight = 15;
     int currEq;
     juce::Slider freqSlider, gainSlider, qualitySlider;
     juce::ComboBox typeComboBox;
-    juce::ToggleButton bypassButton{ "BYPASS" };
-    juce::ToggleButton deleteButton{ "DELETE" };  //change to different button style eventually
+    juce::ToggleButton bypassButton;
+    juce::TextButton deleteButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> freqSliderAttachment, gainSliderAttachment, qualitySliderAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> typeBoxAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassButtonAttachment;
+    juce::Label freqLabel, gainLabel, qualityLabel, typeLabel, bypassLabel, deleteLabel;
     juce::Rectangle<int> rect;
+    CustomLookAndFeelB lnfb;  //use for delete button
 };
 
 //==============================================================================
@@ -144,10 +160,11 @@ private:
     SelectedEqComponent selectedEqComponent;
     juce::Image background;
     juce::TooltipWindow tooltipWindow{ this, TOOLTIP_DELAY };
-    juce::ToggleButton analyserOnButton{ "Analyser" };
-    juce::ComboBox analyserModeBox;
+    juce::ToggleButton analyserOnButton, analyserModeButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserOnAttachment;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> analyserModeAttachment;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserModeAttachment;
+    CustomLookAndFeelA lnfa; //use for RTA bypass and pass to sec
+    CustomLookAndFeelC lnfc; //use for Pre/Post button
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProceduralEqAudioProcessorEditor)
 };

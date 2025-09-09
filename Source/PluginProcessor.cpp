@@ -17,7 +17,7 @@ juce::StringArray params{ "1 Freq", "1 Gain", "1 Quality", "1 Type", "1 Bypass",
                   "9 Freq", "9 Gain", "9 Quality", "9 Type", "9 Bypass", "9 Init", "10 Freq", "10 Gain", "10 Quality", "10 Type", "10 Bypass", "10 Init",
                   "11 Freq", "11 Gain", "11 Quality", "11 Type", "11 Bypass", "11 Init", "12 Freq", "12 Gain", "12 Quality", "12 Type", "12 Bypass", "12 Init" };
 
-juce::StringArray bands{ "BandPass", "HighPass", "LowPass", "HighShelf", "LowShelf" };
+juce::StringArray bands{ "BANDPASS", "HIGHPASS", "LOWPASS", "HIGHSHELF", "LOWSHELF" };
 
 //==============================================================================
 ProceduralEqAudioProcessor::ProceduralEqAudioProcessor()
@@ -152,21 +152,17 @@ void ProceduralEqAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
 
-    if (analyserFifo && analyserOnParam && *analyserOnParam > 0.5f)
-    {
-        if (analyserModeParam && *analyserModeParam < 0.5f) // Pre-EQ
-        {
+    bool analyserBool = analyserFifo && analyserOnParam && *analyserOnParam > 0.5f;
+    if (analyserBool) {
+        if (analyserModeParam && *analyserModeParam < 0.5f) {
             auto* left = buffer.getReadPointer(0);
             auto* right = buffer.getNumChannels() > 1 ? buffer.getReadPointer(1) : nullptr;
-
-            for (int i = 0; i < buffer.getNumSamples(); ++i)
-            {
+            for (int i = 0; i < buffer.getNumSamples(); ++i) {
                 float sample = right ? 0.5f * (left[i] + right[i]) : left[i];
                 analyserFifo->push(sample);
             }
         }
     }
-
 
     juce::dsp::AudioBlock<float> block(buffer);
     juce::dsp::ProcessContextReplacing<float> context(block);
@@ -179,15 +175,11 @@ void ProceduralEqAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, 
             filters[i].process(context);
     }
 
-    if (analyserFifo && analyserOnParam && *analyserOnParam > 0.5f)
-    {
-        if (analyserModeParam && *analyserModeParam > 0.5f) // Post-EQ
-        {
+    if (analyserBool) {
+        if (analyserModeParam && *analyserModeParam > 0.5f) {
             auto* left = buffer.getReadPointer(0);
             auto* right = buffer.getNumChannels() > 1 ? buffer.getReadPointer(1) : nullptr;
-
-            for (int i = 0; i < buffer.getNumSamples(); ++i)
-            {
+            for (int i = 0; i < buffer.getNumSamples(); ++i) {
                 float sample = right ? 0.5f * (left[i] + right[i]) : left[i];
                 analyserFifo->push(sample);
             }
@@ -208,14 +200,14 @@ juce::AudioProcessorEditor* ProceduralEqAudioProcessor::createEditor() {
 //==============================================================================
 void ProceduralEqAudioProcessor::getStateInformation(juce::MemoryBlock& destData) {
     //juce::MemoryOutputStream mos(destData, true);
-    //apvts.state.writeToStream(mos);
+    //tree.state.writeToStream(mos);
 }
 
 void ProceduralEqAudioProcessor::setStateInformation(const void* data, int sizeInBytes) {
     //auto readData = juce::ValueTree::readFromData(data, sizeInBytes);
     //if (readData.isValid()) {
     //    tree.replaceState(readData);
-    //    updateFilters();
+    //    updateAllFilters();
     //}
 }
 
@@ -270,23 +262,26 @@ juce::AudioProcessorValueTreeState::ParameterLayout ProceduralEqAudioProcessor::
 
 void ProceduralEqAudioProcessor::updateFilter(int ind, const FilterUpdateReq& req){
     if (!req.bypass && req.isInit) {
+        Coeffs::Ptr newCoeffs;
         switch (req.type) {
         case 0:
-            *filters[ind].state = *Coeffs::makePeakFilter(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
+            newCoeffs = Coeffs::makePeakFilter(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
         case 1:
-            *filters[ind].state = *Coeffs::makeHighPass(lastSampleRate, req.freq, req.quality);
+            newCoeffs = Coeffs::makeHighPass(lastSampleRate, req.freq, req.quality);
             break;
         case 2:
-            *filters[ind].state = *Coeffs::makeLowPass(lastSampleRate, req.freq, req.quality);
+            newCoeffs = Coeffs::makeLowPass(lastSampleRate, req.freq, req.quality);
             break;
         case 3:
-            *filters[ind].state = *Coeffs::makeHighShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
+            newCoeffs = Coeffs::makeHighShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
         case 4:
-            *filters[ind].state = *Coeffs::makeLowShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
+            newCoeffs = Coeffs::makeLowShelf(lastSampleRate, req.freq, req.quality, juce::Decibels::decibelsToGain(float(req.gain), -80.0f));
             break;
         }
+        if (newCoeffs != nullptr)
+            filters[ind].state = newCoeffs;
     }
 }
 
