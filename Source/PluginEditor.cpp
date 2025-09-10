@@ -20,11 +20,12 @@ SpectrumAnalyser::SpectrumAnalyser(ProceduralEqAudioProcessor& p, ProceduralEqAu
     setInterceptsMouseClicks(false, false);
     setOpaque(false);
     lineColor = juce::Colours::lime;
+    startTimerHz(TIMER_FPS);
 }
 
 SpectrumAnalyser::~SpectrumAnalyser() {}
 
-void SpectrumAnalyser::onEditorTimer() {
+void SpectrumAnalyser::timerCallback() {
     auto* fifo = audioProcessor.getAnalyserFifo();
     if (!fifo)
         return;
@@ -66,8 +67,6 @@ void SpectrumAnalyser::drawNextFrameOfSpectrum() {
     }
 }
 
-//almost positive making the rounded is way slower than doing the math for cubic per each 3 points. Also maybe try to use SmoothedValues to make it jump around less
-//need to make it change colors if its pre/post, prolly just need to call a getter in the editor
 void SpectrumAnalyser::paint(juce::Graphics& g) {
     g.setColour(lineColor);
     auto w = (float)getWidth();
@@ -271,7 +270,6 @@ void ResponseCurveComponent::paint(juce::Graphics& g) {
     g.strokePath(responseCurve, PathStrokeType(2.0f));
 }
 
-//if you can figure out how to just get the pixel width of the updated eq to repaint that would optimise this a lot
 void ResponseCurveComponent::parameterChanged(const juce::String& paramID, float newValue) {
     repaint();
 }
@@ -444,7 +442,6 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
 
     analyser.setVisible(analyserOnButton.getToggleState());
     analyser.lineColor = analyserModeButton.getToggleState() ? juce::Colours::lime : juce::Colours::yellow;
-    startTimerHz(TIMER_FPS);
 }
 
 ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {
@@ -453,10 +450,6 @@ ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {
 }
 
 //==============================================================================
-void ProceduralEqAudioProcessorEditor::timerCallback() {
-    analyser.onEditorTimer();
-}
-
 void ProceduralEqAudioProcessorEditor::paint(juce::Graphics& g) {
     g.drawImage(background, getLocalBounds().toFloat());
 }

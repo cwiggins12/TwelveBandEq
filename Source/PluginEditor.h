@@ -23,15 +23,15 @@ enum {
     scopeSize = 512
 };
 
-const int TOOLTIP_DELAY = 200; //this is in milliseconds
-const int TIMER_FPS = 30;
+constexpr int TOOLTIP_DELAY = 200;  //milliseconds
+constexpr int TIMER_FPS = 30;       //hz
 
 //==============================================================================
-struct SpectrumAnalyser : juce::Component {
+struct SpectrumAnalyser : juce::Component, juce::Timer {
     SpectrumAnalyser(ProceduralEqAudioProcessor&, ProceduralEqAudioProcessorEditor&);
     ~SpectrumAnalyser();
 
-    void onEditorTimer();
+    void timerCallback() override;
     void paint(juce::Graphics& g) override;
     void drawNextFrameOfSpectrum();
 
@@ -83,7 +83,7 @@ private:
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassButtonAttachment;
     juce::Label freqLabel, gainLabel, qualityLabel, typeLabel, bypassLabel, deleteLabel;
     juce::Rectangle<int> rect;
-    CustomLookAndFeelB lnfb;  //use for delete button
+    CustomLookAndFeelB lnfb;
 };
 
 //==============================================================================
@@ -133,13 +133,12 @@ private:
 //==============================================================================
 /**
 */
-class ProceduralEqAudioProcessorEditor : public juce::AudioProcessorEditor, juce::Timer {
+class ProceduralEqAudioProcessorEditor : public juce::AudioProcessorEditor {
 public:
     ProceduralEqAudioProcessorEditor(ProceduralEqAudioProcessor&);
     ~ProceduralEqAudioProcessorEditor() override;
 
     //==============================================================================
-    void timerCallback() override;
     void paint(juce::Graphics&) override;
     void resized() override;
     void mouseDoubleClick(const juce::MouseEvent& event) override;
@@ -165,8 +164,8 @@ private:
     juce::TextButton analyserModeButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserOnAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserModeAttachment;
-    CustomLookAndFeelA lnfa; //use for RTA bypass and pass to sec
-    CustomLookAndFeelC lnfc; //use for Pre/Post button
+    CustomLookAndFeelA lnfa;
+    CustomLookAndFeelC lnfc;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProceduralEqAudioProcessorEditor)
 };

@@ -1,9 +1,8 @@
-TODO: minimize selectedEqComponent button
-
-THINGS TO ADD POTENTIALLY:
+TODO:
+RMS meter and makeup gain
 add minimize selectedEqComponent functionality
-add an how to button
+add a "how to use" button
 fix up background image
-optimize response curve
+optimize response curve using bandwidth of changed eq
 make resizable
-Try using SmoothedValue<float>s for spectrum analyser?
+get smoother response from spectrum analyser
