@@ -1,0 +1,4 @@
+﻿  include_juce_audio_plugin_client_Unity.cpp
+     Creating library C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Unity Plugin\audioplugin_ProceduralEq.lib and object C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Unity Plugin\audioplugin_ProceduralEq.exp
+  ProceduralEq_UnityPlugin.vcxproj -> C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Unity Plugin\audioplugin_ProceduralEq.dll
+          1 file(s) copied.

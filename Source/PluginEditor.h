@@ -35,6 +35,8 @@ struct SpectrumAnalyser : juce::Component {
     void paint(juce::Graphics& g) override;
     void drawNextFrameOfSpectrum();
 
+    juce::Colour lineColor;
+
 private:
     ProceduralEqAudioProcessor& audioProcessor;
     ProceduralEqAudioProcessorEditor& editor;
@@ -111,7 +113,6 @@ struct DraggableButton : juce::Button, private juce::AudioProcessorValueTreeStat
     void mouseDown(const juce::MouseEvent& event) override;
     void mouseDrag(const juce::MouseEvent& event) override;
     bool hitTest(int x, int y) override;
-    void resetEq();
     void updateParamsFromPosition();
     void updatePositionFromParams();
     void updateTooltip();
@@ -160,7 +161,8 @@ private:
     SelectedEqComponent selectedEqComponent;
     juce::Image background;
     juce::TooltipWindow tooltipWindow{ this, TOOLTIP_DELAY };
-    juce::ToggleButton analyserOnButton, analyserModeButton;
+    juce::ToggleButton analyserOnButton;
+    juce::TextButton analyserModeButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserOnAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserModeAttachment;
     CustomLookAndFeelA lnfa; //use for RTA bypass and pass to sec

@@ -20,8 +20,6 @@ struct CustomLookAndFeelA : public juce::LookAndFeel_V4 {
 	void drawComboBox(Graphics&, int width, int height, bool isButtonDown, int buttonX, int buttonY, int buttonW, int buttonH, ComboBox&) override;
     void positionComboBoxText(ComboBox& b, Label& l) override;
     juce::PopupMenu::Options getOptionsForComboBoxPopupMenu(ComboBox&, Label&);
-    //void CustomLookAndFeelA::drawPopupMenuItem(Graphics&, const Rectangle<int>&, bool isSeparator, bool isActive, bool isHighlighted,
-        //bool isTicked, bool hasSubMenu, const String&, const String& shortcutKeyText, const Drawable*, const Colour*) override;
     void drawToggleButton(Graphics&, ToggleButton&, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
     void drawLabel(Graphics&, Label&) override;
 };
@@ -36,7 +34,8 @@ struct CustomLookAndFeelB : public juce::LookAndFeel_V4 {
 
 //Draws Pre/Post eq RTA button
 struct CustomLookAndFeelC : public juce::LookAndFeel_V4 {
-    CustomLookAndFeelC();
+    CustomLookAndFeelC() = default;
+    ~CustomLookAndFeelC() override = default;
 
     void drawButtonBackground(Graphics&, Button&, const Colour& backgroundColour, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
     void drawButtonText(juce::Graphics& g, juce::TextButton& button, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;

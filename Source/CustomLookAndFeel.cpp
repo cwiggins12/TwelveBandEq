@@ -12,7 +12,6 @@
 using namespace juce;
 
 CustomLookAndFeelA::CustomLookAndFeelA() {
-    // Slider colours (dial + textbox)
     setColour(Slider::rotarySliderFillColourId, Colours::limegreen);
     setColour(Slider::thumbColourId, Colours::black);
 
@@ -20,14 +19,12 @@ CustomLookAndFeelA::CustomLookAndFeelA() {
     setColour(Label::textColourId, Colours::white);
     setColour(Label::outlineColourId, Colours::white);
 
-    setColour(TextEditor::backgroundColourId, Colours::black); // editing state
+    setColour(TextEditor::backgroundColourId, Colours::black);
     setColour(TextEditor::textColourId, Colours::white);
 
-    // ComboBox
     setColour(ComboBox::backgroundColourId, Colours::black);
 }
 
-// -------- ComboBox (center current text) --------
 void CustomLookAndFeelA::drawComboBox(Graphics& g, int width, int height, bool, int, int, int, int, ComboBox& box) {
     auto area = Rectangle<float>(0, 0, (float)width, (float)height);
 
@@ -83,7 +80,6 @@ void CustomLookAndFeelA::drawToggleButton(Graphics& g, ToggleButton& button, boo
     g.setColour(Colours::black);
     g.drawRoundedRectangle(bounds, 4.0f, 1.5f);
 
-    // Power symbol (black)
     auto c = bounds.getCentre();
     float r = bounds.getHeight() * 0.3f;
 
@@ -109,7 +105,6 @@ void CustomLookAndFeelB::drawButtonBackground(Graphics& g, Button& b, const Colo
     g.setColour(Colours::black);
     g.drawRoundedRectangle(bounds, 4.0f, 1.5f);
 
-    // Draw the black "X"
     Path cross;
     float pad = bounds.getWidth() * 0.25f;
     Point<float> p1(bounds.getX() + pad, bounds.getY() + pad);
@@ -125,14 +120,30 @@ void CustomLookAndFeelB::drawButtonBackground(Graphics& g, Button& b, const Colo
     g.strokePath(cross, PathStrokeType(5.0f));
 }
 
-CustomLookAndFeelC::CustomLookAndFeelC() {
+void CustomLookAndFeelC::drawButtonBackground(Graphics& g, Button& b, const Colour&, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) {
+    auto bounds = b.getLocalBounds().toFloat();
 
+    bool isPost = b.getToggleState();
+
+    Colour base = isPost ? Colours::limegreen : Colours::yellow;
+
+    if (shouldDrawButtonAsHighlighted) base = base.brighter(0.2f);
+    if (shouldDrawButtonAsDown)        base = base.darker(0.2f);
+
+    g.setColour(base);
+    g.fillRoundedRectangle(bounds, 4.0f);
+
+    g.setColour(Colours::black);
+    g.drawRoundedRectangle(bounds, 4.0f, 1.5f);
 }
 
-void CustomLookAndFeelC::drawButtonBackground(Graphics&, Button&, const Colour& backgroundColour, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) {
+void CustomLookAndFeelC::drawButtonText(Graphics& g, TextButton& button, bool, bool) {
+    auto bounds = button.getLocalBounds();
+    bool isPost = button.getToggleState();
 
-}
+    String text = isPost ? "POST" : "PRE";
 
-void CustomLookAndFeelC::drawButtonText(juce::Graphics& g, juce::TextButton& button, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
-{
+    g.setColour(Colours::black);
+    g.setFont(Font(16.0f, Font::bold));
+    g.drawFittedText(text, bounds, Justification::centred, 1);
 }

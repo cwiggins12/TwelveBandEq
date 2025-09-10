@@ -19,6 +19,7 @@ SpectrumAnalyser::SpectrumAnalyser(ProceduralEqAudioProcessor& p, ProceduralEqAu
                                    forwardFFT(fftOrder), window(fftSize, juce::dsp::WindowingFunction<float>::hann) {
     setInterceptsMouseClicks(false, false);
     setOpaque(false);
+    lineColor = juce::Colours::lime;
 }
 
 SpectrumAnalyser::~SpectrumAnalyser() {}
@@ -68,7 +69,7 @@ void SpectrumAnalyser::drawNextFrameOfSpectrum() {
 //almost positive making the rounded is way slower than doing the math for cubic per each 3 points. Also maybe try to use SmoothedValues to make it jump around less
 //need to make it change colors if its pre/post, prolly just need to call a getter in the editor
 void SpectrumAnalyser::paint(juce::Graphics& g) {
-    g.setColour(juce::Colours::lime);
+    g.setColour(lineColor);
     auto w = (float)getWidth();
     auto h = (float)getHeight();
 
@@ -86,7 +87,6 @@ void SpectrumAnalyser::paint(juce::Graphics& g) {
 //==============================================================================
 /**
 */
-//make this look prettier pls
 SelectedEqComponent::SelectedEqComponent(ProceduralEqAudioProcessor& p, int id) : audioProcessor(p), currEq(id) {
     setTopLeftPosition(400, 450);
     setSize(300, 200);
@@ -223,156 +223,47 @@ ResponseCurveComponent::~ResponseCurveComponent() {
         audioProcessor.tree.removeParameterListener(params[i], this);
 }
 
-//eventually this needs to be changed to check the bandwidth of the changed eq and only have to check the pixels within that bandwidth
 void ResponseCurveComponent::paint(juce::Graphics& g) {
-    //using namespace juce;
-
-    //auto responseArea = getLocalBounds();
-    //const int w = responseArea.getWidth();
-    //if (w <= 0)
-    //    return;
-    //auto sampleRate = audioProcessor.getSampleRate();
-    //if (sampleRate <= 0.0)
-    //    sampleRate = 44100.0;
-
-    //std::vector<double> mags;
-    //mags.resize(w);
-
-    //for (int i = 0; i < w; ++i) {
-    //    double mag = 1.0f;
-    //    double frac = double(i) / double(w - 1);
-    //    auto freq = mapToLog10(frac, 20.0, 20000.0);
-    //    for (int j = 0; j < MAX_EQS; ++j) {
-    //        const auto& req = audioProcessor.getPendingUpdates()[j];
-    //        if (req.isInit && !req.bypass) {
-    //            auto* coeffs = audioProcessor.filters[j].state.get();
-    //            if (coeffs != nullptr) {
-    //                mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
-    //            }
-    //        }
-    //    }
-    //    mags[i] = Decibels::gainToDecibels(mag);
-    //}
-
-    //Path responseCurve;
-
-    //const double outputMin = responseArea.getBottom();
-    //const double outputMax = responseArea.getY();
-    //auto map = [outputMin, outputMax](double input) {
-    //    return jmap(input, -72.0, 24.0, outputMin, outputMax);
-    //};
-
-    //responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
-
-    //for (size_t i = 1; i < mags.size(); ++i)
-    //    responseCurve.lineTo(responseArea.getX() + i, map(mags[i]));
-
-    //g.setColour(Colours::orange);
-    //g.drawRoundedRectangle(responseArea.toFloat(), 4.0f, 1.0f);
-
-    //g.setColour(Colours::white);
-    //g.strokePath(responseCurve, PathStrokeType(2.0f));
-
-    ////////auto bounds = g.getClipBounds();
-    ////////if (bounds.isEmpty())
-    ////////    return;
-
-    ////////auto fullArea = getLocalBounds();
-    ////////auto width = fullArea.getWidth();
-    ////////auto height = fullArea.getHeight();
-
-    ////////auto clipLeft = bounds.getX();
-    ////////auto clipRight = bounds.getRight();
-
-    ////////juce::Path responseCurve;
-
-    ////////auto sampleRate = audioProcessor.getSampleRate();
-    ////////if (sampleRate <= 0.0)
-    ////////    sampleRate = 44100.0;
-
-    ////////for (int x = clipLeft; x < clipRight; ++x)
-    ////////{
-    ////////    auto normX = (float)x / (float)width;
-    ////////    auto freq = juce::mapToLog10(normX, 20.0f, 20000.0f);
-
-    ////////    double magnitude = 1.0;
-
-    ////////    for (int band = 0; band < MAX_EQS; ++band)
-    ////////    {
-    ////////        auto coeffs = audioProcessor.filters[band].state;
-    ////////        if (coeffs != nullptr)
-    ////////            magnitude *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
-    ////////    }
-
-    ////////    auto dB = juce::Decibels::gainToDecibels(magnitude);
-    ////////    auto y = juce::jmap((float)dB, -72.0f, 24.0f, (float)height, 0.0f);
-
-    ////////    if (x == clipLeft)
-    ////////        responseCurve.startNewSubPath((float)x, y);
-    ////////    else
-    ////////        responseCurve.lineTo((float)x, y);
-    ////////}
-
-    ////////g.setColour(juce::Colours::white);
-    ////////g.strokePath(responseCurve, juce::PathStrokeType(2.0f));
-
     using namespace juce;
 
     auto responseArea = getLocalBounds();
     const int w = responseArea.getWidth();
     if (w <= 0)
         return;
-
     auto sampleRate = audioProcessor.getSampleRate();
     if (sampleRate <= 0.0)
         sampleRate = 44100.0;
 
-    // Only compute for the invalidated region
-    auto clip = g.getClipBounds().getIntersection(responseArea);
-    if (clip.isEmpty())
-        return;
+    std::vector<double> mags;
+    mags.resize(w);
 
-    // Utility lambdas
-    auto xToFreq = [&](int x) {
-        double norm = (x - responseArea.getX()) / double(responseArea.getWidth());
-        return mapToLog10(norm, 20.0, 20000.0);
-        };
-    auto mapY = [&](double db) {
-        return jmap(db, -72.0, 24.0,
-            (double)responseArea.getBottom(),
-            (double)responseArea.getY());
-        };
-
-    Path responseCurve;
-
-    // Start curve at left edge of clip region
-    double f0 = xToFreq(clip.getX());
-    double mag0 = 1.0;
-    for (int j = 0; j < MAX_EQS; ++j) {
-        const auto& req = audioProcessor.getPendingUpdates()[j];
-        if (req.isInit && !req.bypass) {
-            if (auto* coeffs = audioProcessor.filters[j].state.get())
-                mag0 *= coeffs->getMagnitudeForFrequency(f0, sampleRate);
-        }
-    }
-    responseCurve.startNewSubPath(clip.getX(), mapY(Decibels::gainToDecibels(mag0)));
-
-    // Build curve across only the clipped width
-    for (int x = clip.getX() + 1; x <= clip.getRight(); ++x) {
-        double freq = xToFreq(x);
-        double mag = 1.0;
+    for (int i = 0; i < w; ++i) {
+        double mag = 1.0f;
+        double frac = double(i) / double(w - 1);
+        auto freq = mapToLog10(frac, 20.0, 20000.0);
         for (int j = 0; j < MAX_EQS; ++j) {
             const auto& req = audioProcessor.getPendingUpdates()[j];
             if (req.isInit && !req.bypass) {
-                if (auto* coeffs = audioProcessor.filters[j].state.get())
-                    mag *= coeffs->getMagnitudeForFrequency(freq, sampleRate);
+                auto coeffs = audioProcessor.guiCoeffs[j];
+                mag *= coeffs.getMagnitudeForFrequency(freq, sampleRate);
             }
         }
-        double db = Decibels::gainToDecibels(mag);
-        responseCurve.lineTo(x, mapY(db));
+        mags[i] = Decibels::gainToDecibels(mag);
     }
 
-    // Draw
+    Path responseCurve;
+
+    const double outputMin = responseArea.getBottom();
+    const double outputMax = responseArea.getY();
+    auto map = [outputMin, outputMax](double input) {
+        return jmap(input, -72.0, 24.0, outputMin, outputMax);
+    };
+
+    responseCurve.startNewSubPath(responseArea.getX(), map(mags.front()));
+
+    for (size_t i = 1; i < mags.size(); ++i)
+        responseCurve.lineTo(responseArea.getX() + i, map(mags[i]));
+
     g.setColour(Colours::orange);
     g.drawRoundedRectangle(responseArea.toFloat(), 4.0f, 1.0f);
 
@@ -380,29 +271,9 @@ void ResponseCurveComponent::paint(juce::Graphics& g) {
     g.strokePath(responseCurve, PathStrokeType(2.0f));
 }
 
-//call clipped paint here to optimize eventually
+//if you can figure out how to just get the pixel width of the updated eq to repaint that would optimise this a lot
 void ResponseCurveComponent::parameterChanged(const juce::String& paramID, float newValue) {
-    //int paramInd = params.indexOf(paramID);       
-    //int eq = paramInd / 6;
-    ////get bandwidth of eq
-    //repaint();
-    int eq = params.indexOf(paramID) / 6;
-    const auto& req = audioProcessor.getUpdateForBand(eq);
-
-    double freqLow = req.freq / std::sqrt(req.quality);
-    double freqHigh = req.freq * std::sqrt(req.quality);
-
-    auto responseArea = getLocalBounds();
-    auto freqToX = [&](double freq) {
-        double norm = juce::mapFromLog10(freq, 20.0, 20000.0);
-        return responseArea.getX() + norm * responseArea.getWidth();
-        };
-
-    int x1 = (int)freqToX(freqLow);
-    int x2 = (int)freqToX(freqHigh);
-
-    repaint(juce::Rectangle<int>(x1, responseArea.getY(),
-        x2 - x1 + 1, responseArea.getHeight()));
+    repaint();
 }
 
 //==============================================================================
@@ -442,7 +313,7 @@ void DraggableButton::mouseDown(const juce::MouseEvent& event) {
         editor.setSelectedEq(associatedEq);
     }
     if (event.mods.isRightButtonDown()) {
-        resetEq();
+        editor.buttonReset(associatedEq);
     }
     dragger.startDraggingComponent(this, event);
 }
@@ -482,7 +353,6 @@ void DraggableButton::updatePositionFromParams() {
     setCentreFromGain(req.gain);
 }
 
-//may wanna extend radius a bit so user doesn't have to click exactly in it
 bool DraggableButton::hitTest(int x, int y) {
     auto centre = getLocalBounds().getCentre();
     auto radius = getLocalBounds().getWidth() / 2.0f;
@@ -514,15 +384,6 @@ void DraggableButton::setCentreFromGain(float gain) {
     setCentrePosition(getBounds().getCentreX(), y);
 }
 
-void DraggableButton::resetEq() {
-    audioProcessor.updateParameter(associatedEq, 2, 0.1f);  //set quality to 1
-    audioProcessor.updateParameter(associatedEq, 3, 0);     //set type to peak
-    audioProcessor.updateParameter(associatedEq, 4, 1);     //set bypass to true
-    audioProcessor.updateParameter(associatedEq, 5, 0);     //set init to false
-    setVisible(false);
-    editor.secVisiblityCheck();
-}
-
 void DraggableButton::updateTooltip() {
     const auto& req = audioProcessor.getUpdateForBand(associatedEq);
     juce::String tip;
@@ -549,23 +410,40 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
         buttonArr.add(new DraggableButton(audioProcessor, *this, i));
         addChildComponent(buttonArr[i]);
     }
+
+    for (int i = 0; i < MAX_EQS; ++i) {
+        bool isInit = *audioProcessor.tree.getRawParameterValue(params[5 + i * 6]);
+        if (isInit) {
+            buttonArr[i]->updatePositionFromParams();
+            buttonArr[i]->setVisible(true);
+        }
+        else {
+            buttonArr[i]->setVisible(false);
+        }
+    }
+    secVisiblityCheck();
+
     selectedEqComponent.setLookAndFeel(&lnfa);
     addChildComponent(selectedEqComponent);
 
     addAndMakeVisible(analyserOnButton);
     analyserOnAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserOn", analyserOnButton);
     analyserOnButton.setComponentID("analyserOn");
-    analyserOnButton.setLookAndFeel(&lnfc);
+    analyserOnButton.setLookAndFeel(&lnfa);
     analyserOnButton.onClick = [this]() {
         analyser.setVisible(analyserOnButton.getToggleState());
     };
 
     addAndMakeVisible(analyserModeButton);
     analyserModeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserMode", analyserModeButton);
-    analyserOnButton.setLookAndFeel(&lnfa);
-    analyserOnButton.onClick = [this]() {
-        analyser.setVisible(analyserOnButton.getToggleState());
+    analyserModeButton.setClickingTogglesState(true);
+    analyserModeButton.setLookAndFeel(&lnfc);
+    analyserModeButton.onClick = [this]() {
+        analyser.lineColor = analyserModeButton.getToggleState() ? juce::Colours::lime : juce::Colours::yellow;
     };
+
+    analyser.setVisible(analyserOnButton.getToggleState());
+    analyser.lineColor = analyserModeButton.getToggleState() ? juce::Colours::lime : juce::Colours::yellow;
     startTimerHz(TIMER_FPS);
 }
 
@@ -605,20 +483,30 @@ void ProceduralEqAudioProcessorEditor::mouseDoubleClick(const juce::MouseEvent& 
             buttonArr[i]->updateParamsFromPosition();
             audioProcessor.updateParameter(i, 5, 1);
             audioProcessor.updateParameter(i, 4, 0);
+
+            const auto& req = audioProcessor.getUpdateForBand(i);
+            audioProcessor.guiCoeffs[i] = audioProcessor.makeCoefficients(req);
+
             setSelectedEq(i);
             buttonArr[i]->setVisible(true);
             return;
         }
     }
-    juce::AlertWindow::showMessageBoxAsync(juce::AlertWindow::WarningIcon, "Maximum EQ Limit Reached", "The current limit of equalizers is 12.");
+    juce::AlertWindow::showMessageBoxAsync(juce::AlertWindow::WarningIcon,
+        "Maximum EQ Limit Reached",
+        "The limit of equalizers is 12.");
 }
 
 void ProceduralEqAudioProcessorEditor::setSelectedEq(int id) {
+    if (selectedEq == id && selectedEq > -1 && selectedEq < buttonArr.size()) {
+        selectedEqComponent.setVisible(true);
+        return;
+    }
     if (selectedEq > -1 && selectedEq < buttonArr.size())
         buttonArr[selectedEq]->repaint();
 
     selectedEq = id;
-    if (selectedEq > -1 && selectedEq < buttonArr.size()) {
+    if (selectedEq > -1 && selectedEq < buttonArr.size() ) {
         selectedEqComponent.updateEqAndSliders(id);
         selectedEqComponent.setVisible(true);
         buttonArr[selectedEq]->repaint();
@@ -639,7 +527,9 @@ void ProceduralEqAudioProcessorEditor::secVisiblityCheck() {
 }
 
 void ProceduralEqAudioProcessorEditor::buttonReset(int id) {
-    buttonArr[id]->resetEq();
+    audioProcessor.resetEq(id);
+    buttonArr[id]->setVisible(false);
+    secVisiblityCheck();
 }
 
 juce::Rectangle<int> ProceduralEqAudioProcessorEditor::getRenderArea() {
@@ -651,7 +541,6 @@ juce::Rectangle<int> ProceduralEqAudioProcessorEditor::getRenderArea() {
     return bounds;
 }
 
-//make this look prettier pls
 juce::Rectangle<int> ProceduralEqAudioProcessorEditor::backgroundImage() {
     using namespace juce;
     background = Image(Image::PixelFormat::RGB, getWidth(), getHeight(), true);

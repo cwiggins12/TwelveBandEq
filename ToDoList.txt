@@ -1,7 +1,8 @@
-TODO:
-add an info button, minimize selectedEqComponent button, fix RTA buttons
+TODO: minimize selectedEqComponent button
 
 THINGS TO ADD POTENTIALLY:
+add minimize selectedEqComponent functionality
+add an how to button
 fix up background image
 optimize response curve
 make resizable

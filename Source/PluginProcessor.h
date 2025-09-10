@@ -150,24 +150,24 @@ public:
     //==============================================================================
     using Filter = juce::dsp::IIR::Filter<float>;
     using Coeffs = juce::dsp::IIR::Coefficients<float>;
-    using MonoFilter = juce::dsp::ProcessorDuplicator<Filter, Coeffs>;
-    std::vector<MonoFilter> filters;
+    using MultiFilter = juce::dsp::ProcessorDuplicator<Filter, Coeffs>;
+    std::vector<MultiFilter> filters;
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     juce::AudioProcessorValueTreeState tree{ *this, nullptr, "Parameters", createParameterLayout() };
-
-    //void updateFilter(int ind);
     void updateAllFilters();
     void updateParameter(int id, int paramInd, float newValue);
     void updateFilter(int ind, const FilterUpdateReq& req);
-
+    void resetEq(int ind);
 
     const std::array<FilterUpdateReq, MAX_EQS>& getPendingUpdates() const { return pendingUpdates; }
     const FilterUpdateReq& getUpdateForBand(int index) const { return pendingUpdates[index]; }
 
     AnalyserFifo<float>* getAnalyserFifo() { return analyserFifo.get(); }
-
     std::atomic<float>* analyserOnParam = nullptr;
     std::atomic<float>* analyserModeParam = nullptr;
+
+    std::array<Coeffs, MAX_EQS> guiCoeffs;
+    Coeffs makeCoefficients(const FilterUpdateReq& req) const;
     
 private:
     void parameterChanged(const juce::String& parameterID, float newValue) override;

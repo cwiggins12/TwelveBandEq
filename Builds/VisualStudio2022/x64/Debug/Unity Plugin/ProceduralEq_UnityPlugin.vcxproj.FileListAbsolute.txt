@@ -1,0 +1,1 @@
+C:\Users\Cody\Desktop\PluginDocs\Repos\ProceduralEq\Builds\VisualStudio2022\x64\Debug\Unity Plugin\audioplugin_ProceduralEq.dll
