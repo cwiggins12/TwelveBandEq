@@ -3,4 +3,6 @@ The planned additions can be found in the todo list file at the top of the repo 
 
 Below is a video with a brief description of how everything can be used.
 
+https://youtu.be/NYskT35Xu-E
+
 Happy mixing! :)
