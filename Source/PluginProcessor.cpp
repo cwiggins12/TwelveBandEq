@@ -10,12 +10,19 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-juce::StringArray params{ "1 Freq", "1 Gain", "1 Quality", "1 Type", "1 Bypass", "1 Init", "2 Freq", "2 Gain", "2 Quality", "2 Type", "2 Bypass", "2 Init",
-                  "3 Freq", "3 Gain", "3 Quality", "3 Type", "3 Bypass", "3 Init", "4 Freq", "4 Gain", "4 Quality", "4 Type", "4 Bypass", "4 Init",
-                  "5 Freq", "5 Gain", "5 Quality", "5 Type", "5 Bypass", "5 Init", "6 Freq", "6 Gain", "6 Quality", "6 Type", "6 Bypass", "6 Init",
-                  "7 Freq", "7 Gain", "7 Quality", "7 Type", "7 Bypass", "7 Init", "8 Freq", "8 Gain", "8 Quality", "8 Type", "8 Bypass", "8 Init",
-                  "9 Freq", "9 Gain", "9 Quality", "9 Type", "9 Bypass", "9 Init", "10 Freq", "10 Gain", "10 Quality", "10 Type", "10 Bypass", "10 Init",
-                  "11 Freq", "11 Gain", "11 Quality", "11 Type", "11 Bypass", "11 Init", "12 Freq", "12 Gain", "12 Quality", "12 Type", "12 Bypass", "12 Init" };
+juce::StringArray params{ "1Freq", "1Gain", "1Quality", "1Type", "1Bypass", "1Init", 
+                          "2Freq", "2Gain", "2Quality", "2Type", "2Bypass", "2Init",
+                          "3Freq", "3Gain", "3Quality", "3Type", "3Bypass", "3Init", 
+                          "4Freq", "4Gain", "4Quality", "4Type", "4Bypass", "4Init",
+                          "5Freq", "5Gain", "5Quality", "5Type", "5Bypass", "5Init",                                                                                                                                                
+                          "6Freq", "6Gain", "6Quality", "6Type", "6Bypass", "6Init",
+                          "7Freq", "7Gain", "7Quality", "7Type", "7Bypass", "7Init", 
+                          "8Freq", "8Gain", "8Quality", "8Type", "8Bypass", "8Init",
+                          "9Freq", "9Gain", "9Quality", "9Type", "9Bypass", "9Init", 
+                          "10Freq", "10Gain", "10Quality", "10Type", "10Bypass", "10Init",
+                          "11Freq", "11Gain", "11Quality", "11Type", "11Bypass", "11Init", 
+                          "12Freq", "12Gain", "12Quality", "12Type", "12Bypass", "12Init",
+                          "PreGain", "PostGain"};
 
 juce::StringArray bands{ "BANDPASS", "HIGHPASS", "LOWPASS", "HIGHSHELF", "LOWSHELF" };
 
@@ -123,6 +130,10 @@ void ProceduralEqAudioProcessor::prepareToPlay(double sampleRate, int samplesPer
         filter.reset();
     }
     updateAllFilters();
+    preGain.prepare(spec);
+    postGain.prepare(spec);
+    updateGain(0);
+    updateGain(1);
 
     analyserFifo = std::make_unique<AnalyserFifo<float>>(fftSize * 2);
     if (analyserFifo) {
@@ -171,6 +182,8 @@ void ProceduralEqAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, 
     juce::dsp::AudioBlock<float> block(buffer);
     juce::dsp::ProcessContextReplacing<float> context(block);
 
+    preGain.process(context);
+
     for (int i = 0; i < MAX_EQS; ++i) {
         auto& req = pendingUpdates[i];
         if (req.dirty.exchange(false))
@@ -178,6 +191,8 @@ void ProceduralEqAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, 
         if (!req.bypass && req.isInit)
             filters[i].process(context);
     }
+
+    postGain.process(context);
 
     if (analyserBool) {
         if (analyserModeParam && *analyserModeParam >= 0.5f) {
@@ -259,6 +274,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout ProceduralEqAudioProcessor::
         //init init :)
         layout.add(std::make_unique<juce::AudioParameterBool>(params[5 + i * 6], params[5 + i * 6], false));
     }
+    layout.add(std::make_unique<juce::AudioParameterFloat>(params[72], params[72], -72.0f, 24.0f, 0.0f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>(params[73], params[73], -72.0f, 24.0f, 0.0f));
     layout.add(std::make_unique<juce::AudioParameterBool>("analyserOn", "Analyser On", true));
     layout.add(std::make_unique<juce::AudioParameterChoice>("analyserMode", "Analyser Mode", juce::StringArray{ "Pre-EQ", "Post-EQ" }, 1));
     return layout;
@@ -289,6 +306,12 @@ void ProceduralEqAudioProcessor::parameterChanged(const juce::String& paramID, f
             }
         }
     }
+    if (params[72] == paramID)
+        updateGain(0);
+        
+    else if (params[73] == paramID)
+        updateGain(1);
+
 }
 
 void ProceduralEqAudioProcessor::updateAllFilters() {
@@ -329,4 +352,11 @@ void ProceduralEqAudioProcessor::resetEq(int ind) {
     auto allpass = *Coeffs::makeAllPass(lastSampleRate, 1000.0f);
     guiCoeffs[ind] = allpass;
     *filters[ind].state = allpass;
+}
+
+void ProceduralEqAudioProcessor::updateGain(int id) {
+    if (id == 0)
+        preGain.setGainDecibels(tree.getRawParameterValue(params[72])->load());
+    else if (id == 1)
+        postGain.setGainDecibels(tree.getRawParameterValue(params[73])->load());
 }

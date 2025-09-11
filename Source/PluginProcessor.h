@@ -171,11 +171,14 @@ public:
     
 private:
     void parameterChanged(const juce::String& parameterID, float newValue) override;
+    void updateGain(int id);
 
     juce::dsp::ProcessSpec spec;
     double lastSampleRate = 44100.0;
     std::unique_ptr<AnalyserFifo<float>> analyserFifo;
     std::array<FilterUpdateReq, MAX_EQS> pendingUpdates;
+    juce::dsp::Gain<float> preGain;
+    juce::dsp::Gain<float> postGain;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProceduralEqAudioProcessor)
 };

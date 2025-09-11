@@ -26,7 +26,34 @@ enum {
 constexpr int TOOLTIP_DELAY = 200;  //milliseconds
 constexpr int TIMER_FPS = 30;       //hz
 
+static auto makeSquareForSlider(juce::Rectangle<int> area) {
+    auto knobArea = area.removeFromTop(area.getHeight() - 15);
+    int side = std::min(knobArea.getWidth(), knobArea.getHeight());
+    return knobArea.withSizeKeepingCentre(side, side);
+}
+
 //==============================================================================
+/**
+*/
+struct GainComponent : juce::Component {
+    GainComponent(ProceduralEqAudioProcessor&);
+    ~GainComponent();
+
+    void paint(juce::Graphics& g) override;
+    void resized() override;
+
+private:
+    ProceduralEqAudioProcessor& audioProcessor;
+
+    juce::Rectangle<int> gainCanvas;
+    juce::Slider preGainSlider, postGainSlider;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> preGainAttachment, postGainAttachment;
+    juce::Label preGainLabel, postGainLabel;
+};
+
+//==============================================================================
+/**
+*/
 struct SpectrumAnalyser : juce::Component, juce::Timer {
     SpectrumAnalyser(ProceduralEqAudioProcessor&, ProceduralEqAudioProcessorEditor&);
     ~SpectrumAnalyser();
@@ -64,12 +91,6 @@ private:
         return area.withSizeKeepingCentre(side, side);
     }
 
-    auto makeSquareForSlider(juce::Rectangle<int> area) {
-        auto knobArea = area.removeFromTop(area.getHeight() - textboxHeight);
-        int side = std::min(knobArea.getWidth(), knobArea.getHeight());
-        return knobArea.withSizeKeepingCentre(side, side);
-    }
-
     ProceduralEqAudioProcessor& audioProcessor;
     int labelHeight = 20;
     int textboxHeight = 15;
@@ -82,7 +103,6 @@ private:
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> typeBoxAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassButtonAttachment;
     juce::Label freqLabel, gainLabel, qualityLabel, typeLabel, bypassLabel, deleteLabel;
-    juce::Rectangle<int> rect;
     CustomLookAndFeelB lnfb;
 };
 
@@ -158,12 +178,16 @@ private:
     ResponseCurveComponent rcc;
     juce::OwnedArray<DraggableButton> buttonArr;
     SelectedEqComponent selectedEqComponent;
+    GainComponent gainComponent;
+
     juce::Image background;
     juce::TooltipWindow tooltipWindow{ this, TOOLTIP_DELAY };
+
     juce::ToggleButton analyserOnButton;
     juce::TextButton analyserModeButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserOnAttachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> analyserModeAttachment;
+
     CustomLookAndFeelA lnfa;
     CustomLookAndFeelC lnfc;
 

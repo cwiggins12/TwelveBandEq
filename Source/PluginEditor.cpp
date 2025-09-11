@@ -15,6 +15,55 @@ juce::Array<juce::Colour> colours = { juce::Colours::red, juce::Colours::darkora
 //==============================================================================
 /**
 */
+GainComponent::GainComponent(ProceduralEqAudioProcessor& p) : audioProcessor(p) {
+    setTopLeftPosition(950, 550);
+    setSize(200, 100);
+
+    //add a big make up gain label above these eventually
+    addAndMakeVisible(preGainSlider);
+    preGainSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
+    preGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 15);
+    preGainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[72], preGainSlider);
+    addAndMakeVisible(preGainLabel);
+    preGainLabel.setText("PRE", juce::NotificationType::dontSendNotification);
+    preGainLabel.setJustificationType(juce::Justification::centred);
+    preGainLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+
+    addAndMakeVisible(postGainSlider);
+    postGainSlider.setSliderStyle(juce::Slider::RotaryVerticalDrag);
+    postGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 15);
+    postGainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, params[73], postGainSlider);
+    addAndMakeVisible(postGainLabel);
+    postGainLabel.setText("POST", juce::NotificationType::dontSendNotification);
+    postGainLabel.setJustificationType(juce::Justification::centred);
+    postGainLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+}
+
+GainComponent::~GainComponent() {}
+
+void GainComponent::paint(juce::Graphics& g) {
+    auto bounds = getLocalBounds().toFloat();
+    g.setColour(juce::Colours::grey);
+    g.fillRoundedRectangle(bounds, 4.0f);
+    g.setColour(juce::Colours::white);
+    g.drawRoundedRectangle(bounds.reduced(1.0f), 4.0f, 2.0f);
+}
+
+void GainComponent::resized() {
+    auto bounds = getLocalBounds();
+    auto l = bounds.removeFromLeft(getWidth() / 2);
+    preGainLabel.setBounds(l.removeFromTop(20));
+    preGainSlider.setBounds(makeSquareForSlider(l).withBottom(l.getBottom()));
+
+    postGainLabel.setBounds(bounds.removeFromTop(20));
+    postGainSlider.setBounds(makeSquareForSlider(bounds).withBottom(bounds.getBottom()));
+}
+
+
+
+//==============================================================================
+/**
+*/
 SpectrumAnalyser::SpectrumAnalyser(ProceduralEqAudioProcessor& p, ProceduralEqAudioProcessorEditor& e) : audioProcessor(p), editor(e), 
                                    forwardFFT(fftOrder), window(fftSize, juce::dsp::WindowingFunction<float>::hann) {
     setInterceptsMouseClicks(false, false);
@@ -394,7 +443,8 @@ void DraggableButton::updateTooltip() {
 /**
 */
 ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqAudioProcessor& p)
-    : AudioProcessorEditor(&p), audioProcessor(p), selectedEqComponent(audioProcessor, 0), rcc(audioProcessor, *this), analyser(audioProcessor, *this) {
+    : AudioProcessorEditor(&p), audioProcessor(p), selectedEqComponent(audioProcessor, 0), rcc(audioProcessor, *this), 
+      analyser(audioProcessor, *this), gainComponent(audioProcessor) {
     setSize(1200, 675);
     buttonBounds = backgroundImage();
     auto area = getRenderArea();
@@ -424,6 +474,9 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
     selectedEqComponent.setLookAndFeel(&lnfa);
     addChildComponent(selectedEqComponent);
 
+    gainComponent.setLookAndFeel(&lnfa);
+    addAndMakeVisible(gainComponent);
+
     addAndMakeVisible(analyserOnButton);
     analyserOnAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.tree, "analyserOn", analyserOnButton);
     analyserOnButton.setComponentID("analyserOn");
@@ -447,6 +500,7 @@ ProceduralEqAudioProcessorEditor::ProceduralEqAudioProcessorEditor(ProceduralEqA
 ProceduralEqAudioProcessorEditor::~ProceduralEqAudioProcessorEditor() {
     selectedEqComponent.setLookAndFeel(nullptr);
     analyserOnButton.setLookAndFeel(nullptr);
+    analyserModeButton.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
