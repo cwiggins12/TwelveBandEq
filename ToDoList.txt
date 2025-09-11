@@ -1,6 +1,6 @@
 TODO:
-RMS meter and makeup gain
-add minimize selectedEqComponent functionality
+RMS meter
+add minimize selectedEqComponent and gainComponent functionality
 add a "how to use" button
 fix up background image
 optimize response curve using bandwidth of changed eq
